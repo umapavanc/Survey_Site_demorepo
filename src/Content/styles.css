@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    height: 100%; 
+     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Helvetica, sans-serif;
+  }
+  
+  footer  {
+    height: 24px;
+    width:24px;
+    text-align: center;
+    padding: 4px;
+  }
+
+  #logo_thumb {
+    margin-left: 20px;
+    border-radius: 10px;
+  }
+
+  #login_btn{
+    float:right;
+  }

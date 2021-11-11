@@ -1,7 +1,7 @@
 // IIFE 
 (() => {
 
-    function Start(): void
+    function Start()
     {
         console.log('App Started...');
     }
