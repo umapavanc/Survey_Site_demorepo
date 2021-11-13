@@ -9,6 +9,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { CreateSurveyComponent } from './pages/create-survey/create-survey.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ActiveSurveysComponent } from './pages/active-surveys/active-surveys.component';
+import { BasePageComponent } from './partials/base-page/base-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ActiveSurveysComponent } from './pages/active-surveys/active-surveys.co
     LandingPageComponent,
     CreateSurveyComponent,
     LoginComponent,
-    ActiveSurveysComponent
+    ActiveSurveysComponent,
+    BasePageComponent
   ],
   imports: [
     BrowserModule,
