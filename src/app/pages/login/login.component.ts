@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { BasePageComponent } from 'src/app/partials/base-page/base-page.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends BasePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(route: ActivatedRoute) {
+    super(route)
+   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
   }
 
 }

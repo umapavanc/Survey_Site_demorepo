@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { BasePageComponent } from 'src/app/partials/base-page/base-page.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-active-surveys',
   templateUrl: './active-surveys.component.html',
   styleUrls: ['./active-surveys.component.css']
 })
-export class ActiveSurveysComponent implements OnInit {
+export class ActiveSurveysComponent extends BasePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(route: ActivatedRoute) {
+    super(route);
+   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
   }
 
 }

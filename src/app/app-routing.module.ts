@@ -6,10 +6,11 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
-  {path: 'home', component: LandingPageComponent},
-  {path: 'create-survey', component: CreateSurveyComponent},
-  {path: 'active-surveys', component: ActiveSurveysComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'home', component: LandingPageComponent, data: {title: 'Home Page'}},
+  {path: 'create-survey', component: CreateSurveyComponent, data: {title: 'Create Survey'}},
+  {path: 'active-surveys', component: ActiveSurveysComponent, data: {title: 'Active Surveys'}},
+  {path: 'login', component: LoginComponent, data: {title: 'Login Page'}},
+  {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
 @NgModule({
