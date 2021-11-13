@@ -23,3 +23,7 @@ html, body {
   #login_btn{
     float:right;
   }
+
+  .bg-dark{
+    background-color: blue;
+  }
