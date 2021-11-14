@@ -10,6 +10,7 @@ import { CreateSurveyComponent } from './pages/create-survey/create-survey.compo
 import { LoginComponent } from './pages/login/login.component';
 import { ActiveSurveysComponent } from './pages/active-surveys/active-surveys.component';
 import { BasePageComponent } from './partials/base-page/base-page.component';
+import { EditSurveyComponent } from './edit-survey/edit-survey.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BasePageComponent } from './partials/base-page/base-page.component';
     CreateSurveyComponent,
     LoginComponent,
     ActiveSurveysComponent,
-    BasePageComponent
+    BasePageComponent,
+    EditSurveyComponent
   ],
   imports: [
     BrowserModule,
