@@ -16,14 +16,17 @@ export class EditSurveyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get surveys(): Survey[]
-  {
+  get surveys(): Survey[] {
     return this.repository.getSurveys();
   }
 
-  get authors(): string[]
-  {
+  get authors(): string[] {
     return this.repository.getAuthors();
+  }
+
+  get survey(): Survey[] {
+
+    return this.repository.getSurveys();
   }
 
 }
