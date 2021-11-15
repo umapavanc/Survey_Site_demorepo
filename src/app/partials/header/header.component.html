@@ -1,35 +1,33 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-    <!-- Navbar content -->
-    <img id="logo_thumb" src="../../../assets/images/logo 200x100.jpg">
-
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a href="/home" class="nav-link">
-            <i class="fas fa-lg fa-laptop-house fa-2x"></i> Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/active-surveys" class="nav-link">
-            <i class="fas fa-list-alt fa-2x"></i> Active Surveys
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/create-survey" class="nav-link">
-            <i class="fas fa-plus-circle fa-2x"></i> Create Survey
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="login" class="nav-link">
-            <i class="fas fa-sign-in-alt fa-2x"></i> Login
-          </a>
-        </li>
-      </ul>
-    </div>
-    
-
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+  <a class="navbar-brand" href="/"> <i class="far fa-comment-dots"></i> Survey </a>
+  <!--<img id="logo_thumb" src="../../../assets/images/logo 200x100.jpg">-->
   
-    
-  </nav>
-  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ms-auto">
+
+      <li class="nav-item" routerLinkActive="['active']">
+        <a class="nav-link" routerLink="/home"> HOME </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="['active']">
+        <a class="nav-link" routerLink="/about"> ABOUT </a>
+      </li>
+      
+      <li class="nav-item" routerLinkActive="['active']">
+        <a class="nav-link" routerLink="/contact" id="contact"> CONTACT </a>
+      </li>
+
+      <li class="nav-item" routerLinkActive="['active']">
+        <a routerLink="/login" class="nav-link" id="login">
+          <i class="fas fa-lg fa-sign-in-alt"></i> Login</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
