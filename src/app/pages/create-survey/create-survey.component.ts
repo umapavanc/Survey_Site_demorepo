@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BasePageComponent } from 'src/app/partials/base-page/base-page.component';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-survey',
@@ -11,25 +9,25 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./create-survey.component.css']
 })
 export class CreateSurveyComponent extends BasePageComponent implements OnInit {
-  myForm!: FormGroup;
-
-  private saveData = () => {
-    console.log("Hello Hello");
-  }
-  constructor(route: ActivatedRoute, private formBuilder: FormBuilder) {  
+  ActivatedRoute: any;
+  constructor(
+    route: ActivatedRoute, 
+    private formBuilder: FormBuilder) {  
     super(route);
    }
 
+   myForm!: FormGroup;
 
-  override ngOnInit(): void {
-  }
+   override ngOnInit(){
+     this.myForm = this.formBuilder.group({
+       id: [],
+       question: ['', Validators.required],
+       answer: ['', Validators.required]
+     });
+   }
 
-
-  onSubmit(formData: { [x: string]: any; }) {
-    var name = formData['name'];
-  }
-
-  formGroup: any;
-  
+  onSubmit() {
+    this.ActivatedRoute.navigate(['active-surveys']);
+  }  
 
 }
