@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './pages/about/about.component';
 import { ActiveSurveysComponent } from './pages/active-surveys/active-surveys.component';
 import { CreateSurveyComponent } from './pages/create-survey/create-survey.component';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
-  {path: 'home', component: LandingPageComponent, data: {title: 'Home Page'}},
+  {path: 'home', component: HomeComponent, data: {title: 'Home'}},
+  {path: 'about', component: AboutComponent, data: {title: 'About'}},
   {path: 'create-survey', component: CreateSurveyComponent, data: {title: 'Create Survey'}},
-  {path: 'active-surveys', component: ActiveSurveysComponent, data: {title: 'Active Surveys'}},
+  {path: 'active-surveys', component: ActiveSurveysComponent, data: {title: 'List'}},
   {path: 'login', component: LoginComponent, data: {title: 'Login Page'}},
   {path: '', redirectTo: '/home', pathMatch: 'full'}
 ];

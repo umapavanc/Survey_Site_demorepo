@@ -9,10 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BasePageComponent implements OnInit {
   title: string | undefined;
 
-  private route: ActivatedRoute
-
-  constructor(route: ActivatedRoute) { 
-    this.route = route;
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
