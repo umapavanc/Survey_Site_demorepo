@@ -8,26 +8,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './create-survey.component.html',
   styleUrls: ['./create-survey.component.css']
 })
-export class CreateSurveyComponent extends BasePageComponent implements OnInit {
-  ActivatedRoute: any;
-  constructor(
-    route: ActivatedRoute, 
-    private formBuilder: FormBuilder) {  
-    super(route);
-   }
+export class CreateSurveyComponent implements OnInit {
 
-   myForm!: FormGroup;
+    constructor() { }
+  
+    ngOnInit(): void {
+    }
+  
+  }
+ 
 
-   override ngOnInit(){
-     this.myForm = this.formBuilder.group({
-       id: [],
-       question: ['', Validators.required],
-       answer: ['', Validators.required]
-     });
-   }
 
-  onSubmit() {
-    this.ActivatedRoute.navigate(['active-surveys']);
-  }  
-
-}

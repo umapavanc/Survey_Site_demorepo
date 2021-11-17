@@ -1,24 +1,24 @@
 <div class="container">
-    <div class="col-md-12">
-        <div class="col-md-12">
-            <form class="form" formGroup="myform" (ngSubmit)="onSubmit">
-    <div class="form-group">
+        <div class="row">
+            <form class="form" formGroup="myform">
+    <div class="mb-4">
     <label for="question">Question</label>
     <input type="text" id="question" class="form-check" placeholder="Add your question here"
     formControlName="question" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-4">
         <label for="answer">Answer</label>
         <input type="tex"  placeholder="Add your answer here" class="form-check" 
           id="terms" formControlName="Answer" />
+    </div> <br>
+
+    <div class="btn-block">
+        <a class="btn btn-success" href="/active-surveys" role="button">
+            <i class="fas fa-edit"></i>Submit </a>
+        <a class="btn btn-warning" href="/" role="button">
+            <i class="fas fa-undo"></i>Cancel</a>
     </div>
 
-    <button class="btn-primary" type="submit">
-        <i class="fas fa-edit"></i>Submit
-    </button>
-    <a href="/survey-list" class="btn btn-warning mb-2">
-        <i class="fas fa-undo"></i>Cancel
-    </a>
 </form>
 </div>
