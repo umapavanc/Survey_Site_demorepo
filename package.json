@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "preinstall": "ng build --aot --prod"
   },
   "engines": {
     "node": "^16.0.0",
