@@ -1,0 +1,36 @@
+<div style="width: 500px; margin: auto;">
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="name">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            required
+            [(ngModel)]="survey.title"
+            name="title"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            class="form-control"
+            id="description"
+            required
+            [(ngModel)]="survey.description"
+            name="description"
+          />
+        </div>
+  
+        <button (click)="createSurvey()" class="btn btn-success">Create</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h3>You successfully created a survey!</h3>
+        <button class="btn btn-success" (click)="createSurvey()">Add</button>
+      </div>
+    </div>
+  </div>
+  
