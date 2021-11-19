@@ -15,6 +15,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { SurveyCreateComponent } from './pages/survey-create/survey-create.component';
 import { SurveyListComponent } from './pages/survey-list/survey-list.component';
 import { SurveyEditComponent } from './pages/survey-edit/survey-edit.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SurveyEditComponent } from './pages/survey-edit/survey-edit.component';
     AboutComponent,
     SurveyCreateComponent,
     SurveyListComponent,
-    SurveyEditComponent
+    SurveyEditComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
