@@ -5,9 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "watch": "ng build --watch --configuration development",
+    "watch": "ng build --watch",
     "test": "ng test",
-    "preinstall": "ng build --aot --prod"
+    "postinstall": "ng build --aot --prod"
   },
   "engines": {
     "node": "^16.0.0",
@@ -15,12 +15,12 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-devkit/build-angular": "^13.0.2",
     "@angular/animations": "~13.0.0",
-    "@angular/cli": "~13.0.2",
+    "@angular-devkit/build-angular": "~13.0.0",
+    "@angular/compiler-cli": "~13.0.0",
+    "@angular/cli": "~13.0.0",
     "@angular/common": "~13.0.0",
     "@angular/compiler": "~13.0.0",
-    "@angular/compiler-cli": "~13.0.0",
     "@angular/core": "~13.0.0",
     "@angular/forms": "~13.0.0",
     "@angular/platform-browser": "~13.0.0",
@@ -38,8 +38,6 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.0.2",
-    "@angular/compiler-cli": "~13.0.0",
     "@types/bootstrap": "^5.1.6",
     "@types/jasmine": "~3.10.0",
     "@types/jquery": "^3.5.8",
