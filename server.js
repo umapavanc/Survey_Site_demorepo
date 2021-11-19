@@ -30,9 +30,9 @@ db.mongoose
   });
 
 // simple route
-app.get("/", (req, res) => {
+/*app.get("/", (req, res) => {
   res.json({ message: "Welcome to Quick Survey." });
-});
+});*/
 
 require("./app/routes/survey.route")(app);
 
