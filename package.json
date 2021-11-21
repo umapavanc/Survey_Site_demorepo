@@ -1,5 +1,5 @@
 {
-  "name": "quick-survey",
+  "name": "login-page",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,40 +8,28 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "engines": {
-    "node": "^16.0.0",
-    "npm": "^8.0.0"
-  },
   "private": true,
   "dependencies": {
-    "@angular-devkit/build-angular": "^13.0.2",
     "@angular/animations": "~13.0.0",
-    "@angular/cli": "~13.0.2",
+    "@angular/cdk": "^13.0.2",
     "@angular/common": "~13.0.0",
     "@angular/compiler": "~13.0.0",
-    "@angular/compiler-cli": "~13.0.0",
     "@angular/core": "~13.0.0",
+    "@angular/flex-layout": "^12.0.0-beta.35",
     "@angular/forms": "~13.0.0",
+    "@angular/material": "^13.0.2",
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
-    "@fortawesome/fontawesome-free": "^5.15.4",
-    "ag-grid-angular": "^26.1.0",
-    "ag-grid-community": "^26.1.0",
-    "bootstrap": "^5.1.3",
-    "jquery": "^3.6.0",
-    "mongoose": "^6.0.13",
-    "popper.js": "^1.16.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.0.2",
+    "@angular-devkit/build-angular": "~13.0.3",
+    "@angular/cli": "~13.0.3",
     "@angular/compiler-cli": "~13.0.0",
-    "@types/bootstrap": "^5.1.6",
     "@types/jasmine": "~3.10.0",
-    "@types/jquery": "^3.5.8",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
@@ -49,19 +37,6 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "tslint-angular": "^3.0.3",
     "typescript": "~4.4.3"
-  },
-  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.",
-  "main": "karma.conf.js",
-  "author": "",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bhagyeshbhavsar/Survey_Site_Project2.git"
-  },
-  "bugs": {
-    "url": "https://github.com/bhagyeshbhavsar/Survey_Site_Project2/issues"
-  },
-  "homepage": "https://github.com/bhagyeshbhavsar/Survey_Site_Project2#readme"
+  }
 }
