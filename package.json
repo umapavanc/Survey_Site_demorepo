@@ -4,10 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "cd client && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "heroku-postbuild": "cd client"
+    "test": "ng test"
   },
   "engines": {
     "node": "^16.0.0",
