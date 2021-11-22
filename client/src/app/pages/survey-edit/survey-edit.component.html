@@ -1,0 +1,46 @@
+<div>
+    <div *ngIf="currentSurvey.id" class="edit-form">
+        <h4>Survey</h4>
+        <form>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" [(ngModel)]="currentSurvey.title" name="title" />
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" [(ngModel)]="currentSurvey.description"
+                    name="description" />
+            </div>
+
+            <div class="form-group">
+                <label><strong>Status:</strong></label>
+                {{ currentSurvey.published ? "Published" : "Pending" }}
+            </div>
+        </form>
+       
+        <button type="submit" class="btn btn-success mb-2" (click)="editSurvey()">
+            Update
+        </button>
+        
+
+        <button class="btn btn-danger mr-2" (click)="deleteSurvey()">
+            Delete
+        </button>
+
+        <button class="btn btn-warning mr-2" *ngIf="currentSurvey.published" (click)="updatePublished(false)">
+            UnPublish
+        </button>
+        <button *ngIf="!currentSurvey.published" class="btn btn-primary mr-2" (click)="updatePublished(true)">
+            Publish
+        </button>
+
+        <p>{{ message }}</p>
+
+
+    </div>
+
+    <div *ngIf="!currentSurvey.id">
+        <br />
+        <p>Cannot access this Survey...</p>
+    </div>
+</div>
