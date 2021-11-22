@@ -1,3 +1,9 @@
+/*
+Team Name - Quick Survey
+Group no - 2 
+Student Id's - 300566849, 301211038, 301153525, 301072907, 301159366
+Purpose - server.js file used to connect DB to perform middleware operations and here all the required modules are initialized
+*/
 const express = require("express");
 const cors = require("cors");
 
