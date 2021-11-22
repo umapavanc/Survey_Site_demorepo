@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "heroku-postbuild": "cd client && ng build"
+    "heroku-postbuild": "cd client && ng build --aot --prod"
   },
   "engines": {
     "node": "^16.0.0",
