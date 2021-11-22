@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "cd client && ng build --configuration production",
+    "start": "node server.js",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku-postbuild": "cd client && ng build --aot --prod"
   },
   "engines": {
     "node": "^16.0.0",
@@ -14,12 +15,12 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-devkit/build-angular": "^13.0.2",
     "@angular/animations": "~13.0.0",
-    "@angular/cli": "~13.0.2",
+    "@angular-devkit/build-angular": "~13.0.0",
+    "@angular/compiler-cli": "~13.0.0",
+    "@angular/cli": "~13.0.0",
     "@angular/common": "~13.0.0",
     "@angular/compiler": "~13.0.0",
-    "@angular/compiler-cli": "~13.0.0",
     "@angular/core": "~13.0.0",
     "@angular/forms": "~13.0.0",
     "@angular/platform-browser": "~13.0.0",
@@ -37,8 +38,6 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.0.2",
-    "@angular/compiler-cli": "~13.0.0",
     "@types/bootstrap": "^5.1.6",
     "@types/jasmine": "~3.10.0",
     "@types/jquery": "^3.5.8",
@@ -52,16 +51,16 @@
     "tslint-angular": "^3.0.3",
     "typescript": "~4.4.3"
   },
-  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.",
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.",
   "main": "karma.conf.js",
   "author": "",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bhagyeshbhavsar/Survey_Site_Project2.git"
+    "url": "git+https://github.com/umapavanc/Survey_Site_demorepo.git"
   },
   "bugs": {
-    "url": "https://github.com/bhagyeshbhavsar/Survey_Site_Project2/issues"
+    "url": "https://github.com/umapavanc/Survey_Site_demorepo/issues"
   },
-  "homepage": "https://github.com/bhagyeshbhavsar/Survey_Site_Project2#readme"
+  "homepage": "https://github.com/umapavanc/Survey_Site_demorepo#readme"
 }

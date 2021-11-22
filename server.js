@@ -1,3 +1,9 @@
+/*
+Team Name - Quick Survey
+Group no - 2 
+Student Id's - 300566849, 301211038, 301153525, 301072907, 301159366
+Purpose - server.js file used to connect DB to perform middleware operations and here all the required modules are initialized
+*/
 const express = require("express");
 const cors = require("cors");
 
@@ -7,6 +13,7 @@ const app = express();
   //origin: "http://localhost:8081"
 //};
 //app.use(cors(corsOptions));
+
 app.use(cors());
 
 // parse requests of content-type - application/json
@@ -30,9 +37,9 @@ db.mongoose
   });
 
 // simple route
-app.get("/", (req, res) => {
+/*app.get("/", (req, res) => {
   res.json({ message: "Welcome to Quick Survey." });
-});
+});*/
 
 require("./app/routes/survey.route")(app);
 
