@@ -35,10 +35,10 @@ db.mongoose
     process.exit();
   });
 
-// simple route
-/*app.get("/", (req, res) => {
+ //simple route
+app.get("/", (req, res) => {
   res.json({ message: "Welcome to Quick Survey." });
-});*/
+});
 
 require("./app/routes/survey.route")(app);
 
