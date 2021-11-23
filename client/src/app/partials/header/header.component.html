@@ -16,23 +16,25 @@
       </li>
 
       <li class="nav-item" routerLinkActive="['active']">
+        <a class="nav-link" routerLink="about"> About </a>
+      </li>
+      <li class="nav-item" routerLinkActive="['active']" *ngIf="isAuth">
         <a class="nav-link" routerLink="surveys"> Surveys </a>
       </li>
 
-      <li class="nav-item" routerLinkActive="['active']">
+      <li class="nav-item" routerLinkActive="['active']" *ngIf="isAuth">
         <a class="nav-link" routerLink="create"> Create Survey </a>
-      </li>
-
-      <li class="nav-item" routerLinkActive="['active']">
-        <a class="nav-link" routerLink="about"> About </a>
       </li>
       <!--
       <li class="nav-item" routerLinkActive="['active']">
         <a class="nav-link" routerLink="/contact" id="contact"> CONTACT </a>
       </li>-->
-
-      <li class="nav-item" routerLinkActive="['active']">
+      <li class="nav-item" routerLinkActive="['active']" *ngIf="!isAuth">
         <a routerLink="/login" class="nav-link" id="login">Login</a>
+      </li>
+
+      <li class="nav-item" *ngIf="isAuth">
+        <a class="nav-link" style="cursor: pointer;" (click)="onLogout()">Logout</a>
       </li>
     </ul>
 
