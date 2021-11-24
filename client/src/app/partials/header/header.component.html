@@ -9,30 +9,46 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ms-auto">
+    <ul class="navbar-nav mr-auto">
 
       <li class="nav-item" routerLinkActive="['active']">
-        <a class="nav-link" routerLink="home"> Home </a>
+        <a class="nav-link fa-lg" routerLink="home"> Home </a>
       </li>
 
       <li class="nav-item" routerLinkActive="['active']">
-        <a class="nav-link" routerLink="surveys"> Surveys </a>
+        <a class="nav-link fa-lg" routerLink="surveys"> Surveys </a>
       </li>
 
       <li class="nav-item" routerLinkActive="['active']">
-        <a class="nav-link" routerLink="create"> Create Survey </a>
+        <a class="nav-link fa-lg" routerLink="create"> Create Survey </a>
       </li>
 
       <li class="nav-item" routerLinkActive="['active']">
-        <a class="nav-link" routerLink="about"> About </a>
+        <a class="nav-link fa-lg" routerLink="about"> About </a>
       </li>
+
+    
       <!--
       <li class="nav-item" routerLinkActive="['active']">
         <a class="nav-link" routerLink="/contact" id="contact"> CONTACT </a>
       </li>-->
+    </ul>
 
-      <li class="nav-item" routerLinkActive="['active']">
-        <a routerLink="/login" class="nav-link" id="login">Login</a>
+    <ul class="navbar-nav ms-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link fa-lg" routerLink="register">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link fa-lg" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ms-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link fa-lg" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link fa-lg" (click)="logout()">LogOut</a>
       </li>
     </ul>
 

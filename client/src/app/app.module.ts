@@ -16,6 +16,9 @@ import { SurveyCreateComponent } from './pages/survey-create/survey-create.compo
 import { SurveyListComponent } from './pages/survey-list/survey-list.component';
 import { SurveyEditComponent } from './pages/survey-edit/survey-edit.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+
+import {authInterceptorProviders} from './helpers/auth.interceptor'
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { RegisterComponent } from './pages/register/register.component';
     SurveyCreateComponent,
     SurveyListComponent,
     SurveyEditComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ import { RegisterComponent } from './pages/register/register.component';
       AboutComponent
     ])
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

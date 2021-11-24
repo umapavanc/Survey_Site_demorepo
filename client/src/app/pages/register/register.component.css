@@ -4,3 +4,13 @@ Group no - 2
 Student Id's - 300566849, 301211038, 301153525, 301072907, 301159366
 Purpose - Stylesheet for register component
 */
+
+.card-container{
+    margin-top: 20px !important;
+    margin-left: 20px !important;
+    width: 50%;
+    border: none;
+}
+.form-group{
+    margin-top: 20px;
+}

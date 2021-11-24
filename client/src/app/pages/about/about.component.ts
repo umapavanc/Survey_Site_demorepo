@@ -25,8 +25,7 @@ export class AboutComponent implements OnInit {
     { Id: '300566849', Name: 'Adrian Dumitriu', Email: 'adumitri@my.centennialcollege.ca', Role: 'Project Manger' },
     { Id: '301211038', Name: 'Uma Pavan Kumar Chukkapalli', Email: 'uchukkap@my.centennialcollege.ca', Role: 'Back End Developer' },
     { Id: '301153525', Name: 'Bhagyesh Bhavsar', Email: 'bbhavsa9@my.centennialcollege.ca', Role: 'Front End Developer' },
-    { Id: '301072907', Name: 'Yasaman Barzegar', Email: 'ybarzega@my.centennialcollege.ca', Role: 'Front Developer' },
-    { Id: '301159366', Name: 'Fouad Ouardi', Email: 'fouardi@my.centennialcollege.ca', Role: 'Back End Developer' }
+    { Id: '301072907', Name: 'Yasaman Barzegar', Email: 'ybarzega@my.centennialcollege.ca', Role: 'Front Developer' }
   ];
 
   getSelectedRows() {

@@ -5,6 +5,9 @@ Student Id's - 300566849, 301211038, 301153525, 301072907, 301159366
 Purpose - Stylesheet for header component
 */
 .img-fluid{
-    max-height: 40px;
+    max-height: 50px;
     border-radius: 10px;
+}
+.mr-auto{
+    margin-left: 20px;
 }
