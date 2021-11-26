@@ -15,11 +15,11 @@
         <a class="nav-link fa-lg" routerLink="home"> Home </a>
       </li>
 
-      <li class="nav-item" routerLinkActive="['active']">
+      <li class="nav-item" routerLinkActive="['active']" *ngIf="isLoggedIn">
         <a class="nav-link fa-lg" routerLink="surveys"> Surveys </a>
       </li>
 
-      <li class="nav-item" routerLinkActive="['active']">
+      <li class="nav-item" routerLinkActive="['active']" *ngIf="isLoggedIn">
         <a class="nav-link fa-lg" routerLink="create"> Create Survey </a>
       </li>
 
