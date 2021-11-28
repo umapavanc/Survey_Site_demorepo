@@ -74,6 +74,10 @@
       </div>
       <div class="form-group">
         <button class="btn btn-primary btn-block">Sign Up</button>
+        <button class='btn btn-secondary m-1' routerLink='/home'>
+          <i class="fas fa-undo"></i>
+          Cancel
+        </button>
       </div>
 
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
