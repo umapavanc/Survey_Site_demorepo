@@ -17,7 +17,7 @@ module.exports = app =>{
     router.get("/", questions.findAll);
 
     //route to retrieve all questions from specifc survey
-    router.get("/surveyId/:surveyId", questions.find);
+    router.get("/takeSurvey/:surveyId", questions.find);
 
     //route to get question by id
     router.get("/:id", questions.findOne);
