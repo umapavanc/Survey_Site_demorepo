@@ -12,6 +12,7 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.surveys = require("./survey.model.js")(mongoose);
+db.questions = require("./question.model")(mongoose);
 db.user = require("./user.model");
 db.role = require("./role.model");
 

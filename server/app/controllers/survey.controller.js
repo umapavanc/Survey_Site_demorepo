@@ -33,11 +33,11 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message: err.message || "An error occured when creating the Survey."
-            });;
+            });
         })
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all surveys from the database.
 exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
