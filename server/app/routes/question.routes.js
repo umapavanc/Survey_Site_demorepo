@@ -13,8 +13,11 @@ module.exports = app =>{
     //route for creating new question
     router.post("/", questions.create);
 
-    //route to retrieve all surveys
-    router.get("/:surveyId", questions.find);
+    //route for getting all questions
+    router.get("/", questions.findAll);
+
+    //route to retrieve all questions from specifc survey
+    router.get("/surveyId/:surveyId", questions.find);
 
     //route to get question by id
     router.get("/:id", questions.findOne);

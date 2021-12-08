@@ -24,16 +24,32 @@ exports.create = (req, res) => {
 
     // save question in db
     question.save(question)
-            .then(data => {
-                res/send(data);
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: err.message || "An Error occured while creating the question."
-                });
-            })
-        };
+        .then(data => {
+            res/send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "An Error occured while creating the question."
+            });
+        })
+};
 
+// Retrieve all questions from the database.
+exports.findAll = (req, res) => {
+    const questionText = req.query.questionText;
+    var condition = questionText ? { questionText: { $regex: new RegExp(questionText), $options: "i" } } : {};
+  
+    Question.find(condition)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving questions."
+        });
+      });
+};
     // Retrieve all questions from from specific survey, based on surveyID.
     exports.find = (req, res) => {
     const surveyId = req.params.surveyId;
