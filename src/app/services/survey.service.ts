@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { Survey} from '../models/survey.model';
 
 
-const baseURL = 'https://survey-server-group.herokuapp.com/api/surveys';
+const baseURL = 'http://localhost:8080/api/surveys';
+
+//'https://survey-server-group.herokuapp.com/api/surveys';
 //'http://localhost:8080/api/surveys';
 
 @Injectable({
