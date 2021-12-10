@@ -4,3 +4,12 @@ Group no - 2
 Student Id's - 300566849, 301211038, 301153525, 301072907, 301159366
 Purpose - Stylesheet for home component
 */
+
+.row {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.jumbotron {
+    font-size: xx-large;
+}

@@ -7,6 +7,7 @@ import { TokenStorageService } from '../../services/token-storage.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  isShown: boolean = false;
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
