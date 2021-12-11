@@ -12,86 +12,8 @@
         <input class="form-control" id="description" required [(ngModel)]="survey.description" name="description" />
       </div>
 
-      <button (click)="createSurvey()" class="btn btn-success mt-10">Create</button>
-      
-      <div class="row" ><!--*ngFor = "let i of questionArray;let index = index"-->
-        
-          <h4>Question:</h4>
-        <div class="col-md-5">
-          <input class="form-control" #question required placeholder="Enter your question" name="question"/>
-        </div>
-
-        <div class="col-md-2">
-          <select class="custom-select p-2" [(ngModel)]="selectedType" (change)="onChange(customSelect.value)" #customSelect>
-            <option selected [value]="0">Type of question</option>
-            <option [value]="1">Text Field</option>
-            <option [value]="2">Multiple Choice</option>
-            <option [value]="3">Checkboxes</option>
-            <option [value]="4">Comment Box</option>
-            <option [value]="5">Star Rating</option>
-          </select>
-        </div>
-
-        <div class="col-md-5">
-          <button type="submit" class="btn btn-primary my-1" (click)="saveQuestion(question.value)">Save</button>
-          <button type="submit" class="btn btn-primary my-1" *ngIf = "isButtonVisible" (click)="newQuestion()"><i class="fas fa-plus-circle"></i> Next Question</button>
-        </div>
+      <button (click)="createSurvey()" routerLink="/questions" class="btn btn-success mt-10">Add Questions</button>
       </div>
+     </div>
 
-      <div class="row" *ngIf="isShownText">
-        <div class="col-md-4">
-          <input class="form-control" id="answer" placeholder="Text Response" required name="answer" />
-        </div>
-      </div>
-
-      <div class="row" *ngIf="isShownRadioButn">
-        <div class="col-md-4">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-            <label class="form-check-label" for="gridRadios1">
-              <input class="form-control" placeholder="Text Response" required name="answer" />
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-            <label class="form-check-label" for="gridRadios2">
-              <input class="form-control" placeholder="Text Response" required name="answer" />
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <div  *ngFor = "let i of checkArray">
-        <div class="row" *ngIf="isShownCheckBox">
-          <div class="col-md-5">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck1">
-              <label class="form-check-label" for="gridCheck1">
-                <input class="form-control" placeholder="Text Response" required name="answer" size="50" />
-              </label>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <a class="p-1" (click)="add()"><i class="far fa-plus-square fa-2x"></i></a> 
-            <a class="p-1" (click)="remove()"> <i class="far fa-minus-square fa-2x"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="row" *ngIf="isShownCommentBox">
-        <div class="col-md-5">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-      </div>
-
-      <div class="row" *ngIf="isShownStarRating">
- 
-      </div>
-
-      <div *ngIf="submitted">
-        <h3>You successfully created a survey!</h3>
-        <button class="btn btn-success" (click)="createSurvey()">Add</button>
-      </div>
-    </div>
-  </div>
 </div>
