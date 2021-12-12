@@ -19,13 +19,14 @@ exports.create = (req, res) => {
     // create question
     const question = new Question({
         questionText: req.body.questionText,
+        questionType: req.body.questionType,
         surveyId: req.body.surveyId
     });
 
     // save question in db
     question.save(question)
         .then(data => {
-            res/send(data);
+            res.send(data);
         })
         .catch(err => {
             res.status(500).send({

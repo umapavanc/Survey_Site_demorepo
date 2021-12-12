@@ -8,7 +8,7 @@ import { SurveyListComponent } from './pages/survey-list/survey-list.component';
 import { SurveyEditComponent } from './pages/survey-edit/survey-edit.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { QuestionCreateComponent } from './pages/question-create/question-create.component';
+
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, data: {title: 'Home'}},
@@ -17,7 +17,6 @@ const routes: Routes = [
   {path: 'create', component: SurveyCreateComponent, data: {title: 'Create New Survey'}},
   {path: 'surveys', component: SurveyListComponent, data: {title: 'Current Surveys'}},
   {path: 'surveys/:id/edit', component: SurveyEditComponent},
-  {path: 'questions', component: QuestionCreateComponent},
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
   {path: 'profile', component: ProfileComponent, data: {title: 'Profile'} },
   {path: '', redirectTo: '/home', pathMatch: 'full'}

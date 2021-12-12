@@ -10,13 +10,10 @@ module.exports = mongoose => {
         mongoose.Schema(
             {
                 questionText: String,
+                questionType: Number,
                 surveyId: String,
-                ratings: [
-                  {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Rating"
-                  }
-                ]
+              
+              
             }
           
         )

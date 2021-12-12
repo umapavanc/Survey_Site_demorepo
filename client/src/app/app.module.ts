@@ -21,9 +21,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
 import {authInterceptorProviders} from './helpers/auth.interceptor';
-import { StarRatingComponent } from './star-rating/star-rating.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { QuestionCreateComponent } from './pages/question-create/question-create.component'
+//import { QuestionCreateComponent } from './pages/question-create/question-create.component'
+
 
 @NgModule({
   declarations: [
@@ -39,8 +40,7 @@ import { QuestionCreateComponent } from './pages/question-create/question-create
     SurveyEditComponent,
     RegisterComponent,
     ProfileComponent,
-    StarRatingComponent,
-    QuestionCreateComponent
+  
   ],
   imports: [
     BrowserModule,
