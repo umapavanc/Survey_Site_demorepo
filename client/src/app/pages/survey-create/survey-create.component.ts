@@ -4,6 +4,9 @@ import { Survey } from 'src/app/models/survey.model';
 import { Question } from 'src/app/models/question.model';
 import { QuestionService } from 'src/app/services/question.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Response } from 'src/app/models/response.model';
+import { ResponseService } from 'src/app/services/response.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-survey-create',
@@ -20,12 +23,15 @@ export class SurveyCreateComponent implements OnInit {
 
   surveySubmitted = false;
   storedId : string;
+  qId: string;
+  
  
 
   constructor(private surveyService: SurveyService,
     private questionService: QuestionService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private responseService: ResponseService) { }
 
   ngOnInit(): void {
   }
@@ -48,14 +54,21 @@ export class SurveyCreateComponent implements OnInit {
           console.log(error);
         });
   }
- // QUESTION IMPLEMENTATION
+
+ // QUESTION + RESPONSE IMPLEMENTATION
  question: Question ={
   questionText: '',
   questionType: 0,
   surveyId: ''
 }
 
+responses: Response = {
+  responseText: '',
+  questionId: ''
+}
+
 questionSubmitted = false;
+responseSubmitted = false;
 
 questions?: Question[];
 currentQuestion?: Question;
@@ -166,22 +179,43 @@ newQuestion(){
 }
 
 saveQuestion(): void {
-  const data = {
+  
+  const questionData = {
     questionText: this.question.questionText,
     questionType: this.question.questionType,
     surveyId: this.storedId
   };
 
-  this.questionService.create(data)
+  this.questionService.create(questionData)
     .subscribe(
       response => {
         console.log(response);
         this.questionSubmitted = true;
+        this.qId = response.id;
+        console.log(this.qId);
       },
       error => {
         console.log(error);
       });
 }
+
+saveAnswer(): void {
+    const resData = {
+      responseText: this.responses.responseText,
+      questionId: this.qId,
+    }
+    
+      this.responseService.create(resData)
+    .subscribe(
+      response => {
+        console.log(response);
+        this.responseSubmitted = true;
+        
+      },
+      error => {
+        console.log(error);
+      });
+    }
 
 closeSurvey(): void  {
   this.router.navigate(['/home']);

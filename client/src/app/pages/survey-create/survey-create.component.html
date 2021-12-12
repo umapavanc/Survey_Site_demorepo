@@ -1,5 +1,7 @@
 <div class="container">
-  <!--style="width: 500px; margin: auto;"-->
+
+  <!-- CREATE SURVEY OBJECT -->
+
   <div class="submit-form">
     <div *ngIf="!surveySubmitted">
       <div class="form-group">
@@ -15,41 +17,56 @@
       <button (click)="createSurvey()" class="btn btn-success mt-10">Create</button>
     </div>
 
+  <!-- CREATE QUESTION OBJECT INHERITING surveyID FROM CREATED SURVEY AND RESPONSE OBJECT INHERITING questionID FROM CREATED QUESTION -->
 
+
+    <!-- QUESTION TEXT AND DROP DOWN FOR SELECTING QUESTION TYPE -->
+   
       <div class="row" ><!--*ngFor = "let i of questionArray;let index = index"-->
-        
           <h4>Question:</h4>
+          
           <div class="col-md-5">
             <input class="form-control" [(ngModel)]="question.questionText" required placeholder="Enter your question" name="question"/>
           </div>
         
           <div class="col-md-2">
-            <select class="custom-select p-2"  [(ngModel)]="question.questionType" (change)="onChange(customSelect.value)" #customSelect >
+            <select class="custom-select p-2"  [(ngModel)]="question.questionType" (change)="onChange(customSelect.value)" #customSelect name="selector">
               <option selected [value]="0">Type of question</option>
               <option [value]="1">Text Field</option>
               <option [value]="2">Multiple Choice</option>
               <option [value]="3">Checkboxes</option>
-              <option [value]="4">Comment Box</option>
-              <option [value]="5">Star Rating</option>
+             <!-- <option [value]="4">Comment Box</option>
+              <option [value]="5">Star Rating</option>-->
             </select>
           </div>
+       
+
+        <!-- SAVE QUESTION + ANSWER BUTTON -->
+
         <div class="col-md-5">
-          <button type="submit" class="btn btn-primary my-1" (click)="saveQuestion()">Save</button>
-          <button type="submit" class="btn btn-primary my-1" *ngIf = "isButtonVisible" (click)="newQuestion()"><i class="fas fa-plus-circle"></i> Next Question</button>
+          <button type="submit" class="btn btn-primary my-1" (click)="saveQuestion()">Save Question</button>
+          <button type="submit" class="btn btn-primary my-1"  (click)="newQuestion()"><i class="fas fa-plus-circle"></i> Next Question</button>
         </div>
+      
       </div>
+
+
+
+        <!-- IMPLEMENTATION FOR TEXT ANSWERS - NO INPUT NECESSARY, USER WILL ENTER INPUT WHEN TAKING THE SURVEY -->
 
       <div class="row" *ngIf="isShownText">
         <div class="col-md-4">
-          <input class="form-control" id="answer" placeholder="Text Response" required name="answer" />
         </div>
       </div>
+
+        <!-- IMPLEMENTATION FOR SINGLE OPTION MULTIPLE CHOICE - ANSWERS NEED TO BE REGISTERED WHEN CREATING SURVEY -->
+
       <div class="row" *ngIf="isShownRadioButn">
         <div class="col-md-4">
           <div class="form-check">
             <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
             <label class="form-check-label" for="gridRadios1">
-              <input class="form-control" placeholder="Text Response" required name="answer" size="50" />
+              <input class="form-control" [(ngModel)]="responses.responseText" placeholder="Text Response" required name="answer" size="50" />
             </label>
           </div>
         </div>
@@ -58,13 +75,16 @@
           <a class="p-1" (click)="removeRadio()"> <i class="far fa-minus-square fa-2x"></i></a>
         </div>
       </div>
-      <div  *ngFor = "let i of checkArray">
+
+        <!-- IMPLEMENTATION FOR MULTIPLE OPTION CHECK BOX STYLE ANSWERS - ANSWERS NEED TO BE REGISTERED WHEN CREATING THE SURVEY -->
+   
+        <div  *ngFor = "let i of checkArray">
         <div class="row" *ngIf="isShownCheckBox">
           <div class="col-md-5">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="gridCheck1">
               <label class="form-check-label" for="gridCheck1">
-                <input class="form-control" placeholder="Text Response" required name="answer" size="50" />
+                <input class="form-control" [(ngModel)]="responses.responseText" placeholder="Text Response" required name="answer" size="50" />
               </label>
             </div>
           </div>
@@ -75,11 +95,8 @@
         </div>
         
       </div>
-      <div class="row" *ngIf="isShownCommentBox">
-        <div class="col-md-5">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-      </div>
+
+          <!-- CLOSE SURVEY AND REDIRECT TO SURVEY PAGE -->
 
       <div *ngIf="surveySubmitted">
         <button class="btn btn-success" (click)="closeSurvey()">Complete Survey</button>
