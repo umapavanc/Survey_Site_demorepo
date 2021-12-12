@@ -1,78 +1,55 @@
-<app-base-page></app-base-page>
-
 <div class="container">
-    <header class="jumbotron">
-      <p>
-          list of all surveys, visible to anyone!!
-      </p>
-    </header>
+  <div class="jumbotron">
+    <h1>Survey List</h1>
+    <p>
+      list of all active surveys, visible to anyone!!
+    </p>
   </div>
 
   <div class="list row">
     <div class="col-md-8">
       <div class="input-group mb-4">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search by title"
-          [(ngModel)]="title"
-        />
+        <input type="text" class="form-control" placeholder="Search by title" [(ngModel)]="title" />
         <div class="input-group-append">
-          <button
-            class="btn btn-outline-secondary"
-            type="button"
-            (click)="searchTitle()"
-          >
+          <button class="btn btn-outline-secondary" type="button" (click)="searchTitle()">
             Search
           </button>
         </div>
       </div>
     </div>
     <div class="col-md-6">
-      <h4>Survey List</h4>
-      <ul class="list-group">
-        <li
-          class="list-group-item"
-          *ngFor="let survey of surveys; let i = index"
-          [class.active]="i == currentIndex"
-          (click)="setCurrentSurvey(survey, i)"
-        >
-        {{ survey.title}}
+      <button class="btn btn-success" [disabled]="btnDisable" (click)="takeSurvey()"><i class="fas fa-user-edit"></i> Take Survey</button>
+      <button class="btn btn-success m-1"  (click)="export()"><i class="fas fa-file-export"></i> Export Results Report</button>
+    </div>
+      <!--<ul class="list-group">
+        <li class="list-group-item" *ngFor="let survey of surveys; let i = index" [class.active]="i == currentIndex"
+          (click)="setCurrentSurvey(survey, i)">
+          {{ survey.title}}
         </li>
-      </ul>
-  
-    </div>
-    <div class="col-md-6">
-      <div *ngIf="currentSurvey">
-        <h4>Survey</h4>
-        <div>
-          <label><strong>Title:</strong></label> 
-          {{ currentSurvey.title}}
-        </div>
-        <div>
-          <label><strong>Description:</strong></label>
-          {{ currentSurvey.description }}
-        </div>
-        <div>
-          <label><strong>Status:</strong></label>
-          {{ currentSurvey.published ? "Published" : "Pending" }}
-        </div>
-
-  
-        <a class="btn btn-secondary" routerLink="{{currentSurvey.id}}/edit" *ngIf="isLoggedIn">
-          Edit
-        </a>
-
-        
-       
-      </div>
-  
-      <div *ngIf="!currentSurvey">
-        <br />
-        <p>Please click on a survey</p>
-      </div>
-    </div>
+      </ul>-->
   </div>
+  <table id = "exportData" class="table">
+    <thead>
+      <tr class="table-primary">
+        <th>#</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Questions</th>
+        <th>Responses</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let survey of surveys; let i = index;" [class.active]="i == currentIndex"
+        (click)="setCurrentSurvey(survey, i)">
+        <td>{{ i + 1 }}</td>
+        <td> {{ survey.title}} </td>
+        <td> {{ survey.description}} </td>
+        <td>3</td>
+        <td>5</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <!--
 <div class="container">
