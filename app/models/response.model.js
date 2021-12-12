@@ -5,15 +5,13 @@ Student Id's - 300566849, 301211038, 301153525, 301072907, 301159366
 Purpose - define schema of survey object
 */
 module.exports = mongoose => {
-    const Question = mongoose.model(
-        "questions",
+    const Response = mongoose.model(
+        "responses",
         mongoose.Schema(
             {
-                questionText: String,
-                questionType: Number,
-                surveyId: String,
-              
-              
+                responseText: String,
+                questionId: String,
+            
             }
           
         )
@@ -26,5 +24,5 @@ module.exports = mongoose => {
         }
       });
     
-      return Question;
+      return Response;
     };
