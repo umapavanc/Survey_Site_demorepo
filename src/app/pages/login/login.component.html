@@ -22,7 +22,12 @@
             </div>
           </div>
         </div>
-        <div class="form-group" style="float: right;">
+        <div class="form-group">
+          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+            Login failed: {{ errorMessage }}
+          </div>
+        </div>
+        <div class="form-group m-0" style="float: right;">
           <button class="btn btn-primary btn-block" type="submit">
             Login
           </button>
@@ -31,12 +36,6 @@
             Cancel
           </button>
         </div>
-        <div class="form-group">
-          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-            Login failed: {{ errorMessage }}
-          </div>
-        </div>
-
       </form>
 
       <div class="alert alert-success" *ngIf="isLoggedIn">
