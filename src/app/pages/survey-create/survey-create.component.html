@@ -1,7 +1,7 @@
 <div class="container">
   <!--style="width: 500px; margin: auto;"-->
   <div class="submit-form">
-    <div *ngIf="!submitted">
+    <div *ngIf="!surveySubmitted">
       <div class="form-group">
         <label for="name">Title</label>
         <input type="text" class="form-control" id="title" required [(ngModel)]="survey.title" name="title" />
@@ -13,24 +13,28 @@
       </div>
 
       <button (click)="createSurvey()" class="btn btn-success mt-10">Create</button>
-      
+    </div>
+
+
       <div class="row" ><!--*ngFor = "let i of questionArray;let index = index"-->
         
           <h4>Question:</h4>
+          <div class="col-md-5">
+            <input class="form-control" [(ngModel)]="question.questionText" required placeholder="Enter your question" name="question"/>
+          </div>
+        
+          <div class="col-md-2">
+            <select class="custom-select p-2"  [(ngModel)]="question.questionType" (change)="onChange(customSelect.value)" #customSelect >
+              <option selected [value]="0">Type of question</option>
+              <option [value]="1">Text Field</option>
+              <option [value]="2">Multiple Choice</option>
+              <option [value]="3">Checkboxes</option>
+              <option [value]="4">Comment Box</option>
+              <option [value]="5">Star Rating</option>
+            </select>
+          </div>
         <div class="col-md-5">
-          <input class="form-control" #question required placeholder="Enter your question" name="question"/>
-        </div>
-        <div class="col-md-2">
-          <select class="custom-select p-2" [(ngModel)]="selectedType" (change)="onChange(customSelect.value)" #customSelect>
-            <option selected [value]="0">Type of question</option>
-            <option [value]="1">Text Field</option>
-            <option [value]="2">Multiple Choice</option>
-            <option [value]="3">Checkboxes</option>
-            <option [value]="4">Comment Box</option>z
-          </select>
-        </div>
-        <div class="col-md-5">
-          <button type="submit" class="btn btn-primary my-1" (click)="saveQuestion(question.value)">Save</button>
+          <button type="submit" class="btn btn-primary my-1" (click)="saveQuestion()">Save</button>
           <button type="submit" class="btn btn-primary my-1" *ngIf = "isButtonVisible" (click)="newQuestion()"><i class="fas fa-plus-circle"></i> Next Question</button>
         </div>
       </div>
@@ -45,15 +49,13 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
             <label class="form-check-label" for="gridRadios1">
-              <input class="form-control" placeholder="Text Response" required name="answer" />
+              <input class="form-control" placeholder="Text Response" required name="answer" size="50" />
             </label>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-            <label class="form-check-label" for="gridRadios2">
-              <input class="form-control" placeholder="Text Response" required name="answer" />
-            </label>
-          </div>
+        </div>
+        <div class="col-md-2">
+          <a class="p-1" (click)="addRadio()"><i class="far fa-plus-square fa-2x"></i></a> 
+          <a class="p-1" (click)="removeRadio()"> <i class="far fa-minus-square fa-2x"></i></a>
         </div>
       </div>
       <div  *ngFor = "let i of checkArray">
@@ -67,10 +69,11 @@
             </div>
           </div>
           <div class="col-md-2">
-            <a class="p-1" (click)="add()"><i class="far fa-plus-square fa-2x"></i></a> 
-            <a class="p-1" (click)="remove()"> <i class="far fa-minus-square fa-2x"></i></a>
+            <a class="p-1" (click)="addCheck()"><i class="far fa-plus-square fa-2x"></i></a> 
+            <a class="p-1" (click)="removeCheck()"> <i class="far fa-minus-square fa-2x"></i></a>
           </div>
         </div>
+        
       </div>
       <div class="row" *ngIf="isShownCommentBox">
         <div class="col-md-5">
@@ -78,10 +81,9 @@
         </div>
       </div>
 
-      <div *ngIf="submitted">
-        <h3>You successfully created a survey!</h3>
-        <button class="btn btn-success" (click)="createSurvey()">Add</button>
+      <div *ngIf="surveySubmitted">
+        <button class="btn btn-success" (click)="closeSurvey()">Complete Survey</button>
       </div>
-    </div>
+    
   </div>
 </div>

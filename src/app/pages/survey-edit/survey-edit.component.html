@@ -17,6 +17,16 @@
                 {{ currentSurvey.published ? "Published" : "Pending" }}
             </div>
         </form>
+
+        <h4>Questions</h4>
+      
+        <form>
+            <div class="form-group">
+                <label for="questionText">Question</label>
+                <input type="text" class="form-control" id="questionText" [(ngModel)]="question.questionText" name="questionText" />
+            </div>
+
+        </form>
        
         <button type="submit" class="btn btn-success mb-2" (click)="editSurvey()">
             Update
