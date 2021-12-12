@@ -48,6 +48,7 @@ require("./app/routes/survey.route")(app);
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/question.routes')(app);
+require('./app/routes/response.routes')(app);
 
 
 
