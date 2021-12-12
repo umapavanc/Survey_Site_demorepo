@@ -4,7 +4,6 @@
         <strong>{{ currentUser.username }}</strong> Profile
       </h3>
     </header>
-    
     <p>
       <strong>Email:</strong>
       {{ currentUser.email }}
@@ -12,7 +11,7 @@
     <strong>Roles:</strong>
     <ul>
       <li *ngIf="currentUser.roles == 'ROLE_USER'">
-        User
+        USER
       </li>
     </ul>
   </div>
