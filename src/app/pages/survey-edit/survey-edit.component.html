@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     <div *ngIf="currentSurvey.id" class="edit-form">
         <h4>Survey</h4>
         <form>
@@ -28,19 +28,19 @@
 
         </form>
        
-        <button type="submit" class="btn btn-success mb-2" (click)="editSurvey()">
+        <button type="submit" class="btn btn-success mt-1" (click)="editSurvey()">
             Update
         </button>
         
 
-        <button class="btn btn-danger mr-2" (click)="deleteSurvey()">
+        <button class="btn btn-danger mt-1" (click)="deleteSurvey()">
             Delete
         </button>
 
-        <button class="btn btn-warning mr-2" *ngIf="currentSurvey.published" (click)="updatePublished(false)">
+        <button class="btn btn-warning mt-1" *ngIf="currentSurvey.published" (click)="updatePublished(false)">
             UnPublish
         </button>
-        <button *ngIf="!currentSurvey.published" class="btn btn-primary mr-2" (click)="updatePublished(true)">
+        <button *ngIf="!currentSurvey.published" class="btn btn-primary mt-1" (click)="updatePublished(true)">
             Publish
         </button>
 
