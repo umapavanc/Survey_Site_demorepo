@@ -14,9 +14,10 @@ import html2canvas from 'html2canvas';
 })
 export class HomeComponent implements OnInit {
 
-  HighlightRow : Number;  
-  Survey : any;  
-  ClickedRow:any;  
+  
+  Survey : any; 
+  HighlightRow : Number;   
+  ClickedRow:Function;  
    
   
   btnDisable:boolean = true;

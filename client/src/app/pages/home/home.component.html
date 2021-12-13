@@ -37,8 +37,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let survey of surveys; let i = index;" [class.active]="i == currentIndex"
-        (click)="setCurrentSurvey(survey, i); ClickedRow(i)" >
+      <tr *ngFor="let survey of surveys; let i = index;" [class.active]="i == HighlightRow"
+        (click)="setCurrentSurvey(survey, i); ClickedRow(i)" >   <!-- highlight selected row and set the current survey-->
         <td>{{ i + 1 }}</td>
         <td> {{ survey.title}} </td>
         <td> {{ survey.description}} </td>
