@@ -21,7 +21,7 @@
 
 
     <!-- QUESTION TEXT AND DROP DOWN FOR SELECTING QUESTION TYPE -->
-   
+    <form #q="ngForm" (ngSubmit)="q.reset()">
       <div class="row" ><!--*ngFor = "let i of questionArray;let index = index"-->
           <h4>Question:</h4>
           
@@ -45,12 +45,12 @@
 
         <div class="col-md-5">
           <button type="submit" class="btn btn-primary my-1" (click)="saveQuestion()">Save Question</button>
-          <button type="submit" class="btn btn-primary my-1"  (click)="newQuestion()"><i class="fas fa-plus-circle"></i> Next Question</button>
+          <!--<button type="submit" class="btn btn-primary my-1"  (click)="newQuestion()"><i class="fas fa-plus-circle"></i> Next Question</button>-->
         </div>
       
       </div>
 
-
+    </form>
 
         <!-- IMPLEMENTATION FOR TEXT ANSWERS - NO INPUT NECESSARY, USER WILL ENTER INPUT WHEN TAKING THE SURVEY -->
 

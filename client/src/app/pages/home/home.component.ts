@@ -13,6 +13,11 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  HighlightRow : Number;  
+  Survey : any;  
+  ClickedRow:any;  
+   
   
   btnDisable:boolean = true;
   surveys?: Survey[];
@@ -25,7 +30,12 @@ export class HomeComponent implements OnInit {
   private roles: string[] = [];
 
 
-  constructor(private surveyService: SurveyService, private tokenStorageService: TokenStorageService) { }
+  constructor(private surveyService: SurveyService, private tokenStorageService: TokenStorageService) { 
+    this.ClickedRow = function(index){  
+      this.HighlightRow = index;  
+  }
+};
+
 
   ngOnInit(): void {
     this.getSurveys();
@@ -39,6 +49,8 @@ export class HomeComponent implements OnInit {
       this.username = user.username;
     }
   }
+
+
 
   getSurveys(): void {
     this.surveyService.getAll()
@@ -107,4 +119,6 @@ export class HomeComponent implements OnInit {
           console.log(error);
         });
   }
+
+  
 }

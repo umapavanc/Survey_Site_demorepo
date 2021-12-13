@@ -23,6 +23,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import {authInterceptorProviders} from './helpers/auth.interceptor';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TakeSurveyComponent } from './pages/take-survey/take-survey.component';
 //import { QuestionCreateComponent } from './pages/question-create/question-create.component'
 
 
@@ -40,6 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SurveyEditComponent,
     RegisterComponent,
     ProfileComponent,
+    TakeSurveyComponent,
   
   ],
   imports: [

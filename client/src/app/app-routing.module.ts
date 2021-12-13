@@ -8,6 +8,7 @@ import { SurveyListComponent } from './pages/survey-list/survey-list.component';
 import { SurveyEditComponent } from './pages/survey-edit/survey-edit.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { TakeSurveyComponent } from './pages/take-survey/take-survey.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'surveys/:id/edit', component: SurveyEditComponent},
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
   {path: 'profile', component: ProfileComponent, data: {title: 'Profile'} },
-  {path: '', redirectTo: '/home', pathMatch: 'full'}
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'takeSurvey/:id', component: TakeSurveyComponent, data: {title: 'Survey Attempt'}}
 ];
 
 @NgModule({
