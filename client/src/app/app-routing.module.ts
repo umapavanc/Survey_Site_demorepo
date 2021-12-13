@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent, data: {title: 'Register Page'}},
   {path: 'profile', component: ProfileComponent, data: {title: 'Profile'} },
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'takeSurvey/:id', component: TakeSurveyComponent, data: {title: 'Survey Attempt'}}
+  {path: 'questions/takeSurvey/:id', component: TakeSurveyComponent, data: {title: 'Survey Attempt'}}
 ];
 
 @NgModule({

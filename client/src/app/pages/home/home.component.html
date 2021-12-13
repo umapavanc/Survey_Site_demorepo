@@ -15,8 +15,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <button class="btn btn-success" [disabled]="btnDisable" routerLink="takeSurvey/"><i class="fas fa-user-edit"></i> Take Survey</button>
+    <div class="col-md-6" *ngIf="currentSurvey">
+      <button class="btn btn-success"  routerLink="/questions/takeSurvey/{{currentSurvey.id}}"><i class="fas fa-user-edit"></i> Take Survey</button>
       <button class="btn btn-success m-1"  (click)="export()"><i class="fas fa-file-export"></i> Export Results Report</button>
     </div>
       <!--<ul class="list-group">
