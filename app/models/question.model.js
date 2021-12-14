@@ -11,9 +11,7 @@ module.exports = mongoose => {
             {
                 questionText: String,
                 questionType: Number,
-                surveyId: String,
-              
-              
+                surveyId: String
             }
           
         )
