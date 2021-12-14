@@ -11,22 +11,22 @@ module.exports = app =>{
     var router = require("express").Router();
 
     //route for creating new question
-    router.post("/", questions.create);
+    router.post("/api/questions/", questions.create);
 
     //route for getting all questions
-    router.get("/", questions.findAll);
+    router.get("/api/questions/", questions.findAll);
 
     //route to retrieve all questions from specifc survey
-    router.get("/takeSurvey/:surveyId", questions.find);
+    router.get("/api/questions/takeSurvey/:surveyId", questions.find);
 
     //route to get question by id
-    router.get("/:id", questions.findOne);
+    router.get("/api/questions/:id", questions.findOne);
 
     //route to delete question with specified id
-    router.delete("/:id", questions.delete);
+    router.delete("/api/questions/:id", questions.delete);
 
     //route to update question by id
-    router.put("/:id", questions.update);
+    router.put("/api/questions/:id", questions.update);
 
-    app.use('/api/questions', router);
+    app.use(router);
 }

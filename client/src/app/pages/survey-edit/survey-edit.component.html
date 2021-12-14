@@ -1,6 +1,6 @@
 <div>
     <div *ngIf="currentSurvey.id" class="edit-form">
-        <h4>Survey</h4>
+        <h1>Survey</h1>
         <form>
             <div class="form-group">
                 <label for="title">Title</label>
@@ -12,27 +12,27 @@
                     name="description" />
             </div>
 
-            <div class="form-group">
-                <label><strong>Status:</strong></label>
-                {{ currentSurvey.published ? "Published" : "Pending" }}
-            </div>
+            
         </form>
 
-        <h4>Questions</h4>
+        <h1>Questions</h1>
       
-        <form>
-            <div class="form-group">
-                <label for="questionText">Question</label>
+        <form *ngFor="let question of questions; let i = index"
+        [class.active]="i == questionIndex">
+            <div>
+                <label for="questionText">Question {{questionIndex}}</label>
                 <input type="text" class="form-control" id="questionText" [(ngModel)]="question.questionText" name="questionText" />
             </div>
 
         </form>
-       
+
+
+
+        <div class="edit-buttons">
         <button type="submit" class="btn btn-success mb-2" (click)="editSurvey()">
             Update
         </button>
         
-
         <button class="btn btn-danger mr-2" (click)="deleteSurvey()">
             Delete
         </button>
@@ -43,7 +43,11 @@
         <button *ngIf="!currentSurvey.published" class="btn btn-primary mr-2" (click)="updatePublished(true)">
             Publish
         </button>
-
+        <div class="form-group">
+            <label><strong>Status:</strong></label>
+            {{ currentSurvey.published ? "Published" : "Pending" }}
+        </div>
+        </div>
         <p>{{ message }}</p>
 
 

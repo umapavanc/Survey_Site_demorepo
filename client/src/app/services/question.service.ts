@@ -6,6 +6,7 @@ import { Question } from '../models/question.model'
 
 
 const baseURL = 'http://localhost:8080/api/questions';
+const surveyURL = 'http://localhost:8080/api/surveys'
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,10 @@ export class QuestionService {
   }
 
   findBySurvey(surveyId: any): Observable<Question[]> {
+    return this.http.get<Question[]>(`${baseURL}/takeSurvey/${surveyId}`);
+  }
+
+  editBySurvey(surveyId: any): Observable<Question[]> {
     return this.http.get<Question[]>(`${baseURL}/takeSurvey/${surveyId}`);
   }
 
