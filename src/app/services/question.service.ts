@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Question } from '../models/question.model'
+import { Survey } from '../models/survey.model';
 
 
-const baseURL = 'https://survey-server-group.herokuapp.com/api/questions'; //'http://localhost:8080/api/questions';
+const baseURL = 'https://survey-server-group.herokuapp.com/api/questions'; //'http://localhost:8080/api/questions'
 
 @Injectable({
   providedIn: 'root'
