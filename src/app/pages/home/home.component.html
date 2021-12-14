@@ -1,9 +1,7 @@
 <div class="container">
   <div class="jumbotron">
     <h1>Survey List</h1>
-    <p>
-      list of all active surveys, visible to anyone!!
-    </p>
+   
   </div>
 
   <div class="list row">
@@ -17,8 +15,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <button class="btn btn-success" [disabled]="btnDisable" (click)="takeSurvey()"><i class="fas fa-user-edit"></i> Take Survey</button>
+    <div class="col-md-6" *ngIf="currentSurvey">
+      <button class="btn btn-success"  routerLink="/questions/takeSurvey/{{currentSurvey.id}}"><i class="fas fa-user-edit"></i> Take Survey</button>
       <button class="btn btn-success m-1"  (click)="export()"><i class="fas fa-file-export"></i> Export Results Report</button>
     </div>
       <!--<ul class="list-group">
@@ -28,7 +26,7 @@
         </li>
       </ul>-->
   </div>
-  <table id = "exportData" class="table">
+  <table id = "exportData" class="table table-hover" >
     <thead>
       <tr class="table-primary">
         <th>#</th>
@@ -39,8 +37,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let survey of surveys; let i = index;" [class.active]="i == currentIndex"
-        (click)="setCurrentSurvey(survey, i)">
+      <tr *ngFor="let survey of surveys; let i = index;" [class.active]="i == HighlightRow"
+        (click)="setCurrentSurvey(survey, i); ClickedRow(i)" >   <!-- highlight selected row and set the current survey-->
         <td>{{ i + 1 }}</td>
         <td> {{ survey.title}} </td>
         <td> {{ survey.description}} </td>

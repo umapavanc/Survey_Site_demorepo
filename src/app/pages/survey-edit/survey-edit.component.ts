@@ -6,6 +6,7 @@ import { QuestionService } from 'src/app/services/question.service';
 import { Question } from 'src/app/models/question.model';
 
 
+
 @Component({
   selector: 'app-survey-edit',
   templateUrl: './survey-edit.component.html',
@@ -25,9 +26,13 @@ export class SurveyEditComponent implements OnInit {
     id: '',
     questionText: '',
     questionType: 0,
-    surveyId: this.currentSurvey.id
-  }
+    surveyId: ''
+  };
+  questions: Question[];
+  surveyId = '';
+  questionIndex = -1;
 
+ 
   constructor(
     private surveyService: SurveyService,
     private route: ActivatedRoute,
@@ -38,7 +43,22 @@ export class SurveyEditComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') || ""
     this.surveyService.getSurveyById(this.id)
-      .subscribe(data => this.currentSurvey = data)
+      .subscribe(data => this.currentSurvey = data);
+    
+    this.surveyId =  this.route.snapshot.paramMap.get('id') || "";
+
+    this.questionService.findBySurvey(this.surveyId)
+    .subscribe(
+      questionData => {
+        this.questions = questionData;
+        
+        console.log(questionData);
+        console.log('LOG ID' + this.surveyId)
+        
+      },
+      error => {
+        console.log(error);
+      });
   }
 
   editSurvey(): void {
@@ -89,7 +109,28 @@ export class SurveyEditComponent implements OnInit {
         });
   }
 
+  displayAllQuestions(question: Question, index: number): void {
+    this.surveyId = question.surveyId;
+    this.questionIndex = index;
+  }
 
-  
+  deleteQuestion(id: string): void {
+    this.questionService.delete(id)
+      .subscribe(
+        response => {
+          console.log(response);
+          console.log("log" + this.question.id)
+        },
+        error => {
+          console.log(error);
+        }
+      )
+      this.refresh();
+  }
+
+  refresh(): void {
+    this.ngOnInit();
+    this.questionIndex = -1;
+  }
 
 }

@@ -4,6 +4,10 @@ import { Survey } from 'src/app/models/survey.model';
 import { Question } from 'src/app/models/question.model';
 import { QuestionService } from 'src/app/services/question.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Response } from 'src/app/models/response.model';
+import { ResponseService } from 'src/app/services/response.service';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-survey-create',
@@ -11,7 +15,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./survey-create.component.css']
 })
 export class SurveyCreateComponent implements OnInit {
+
   arrayOfQuestions: Question[] = new Array();
+
   survey: Survey = {
     title: '',
     description: '',
@@ -23,8 +29,17 @@ export class SurveyCreateComponent implements OnInit {
     questionType: 0,
     surveyId: ''
   }
+
+  responses: Response = {
+    responseText: '',
+    questionId: ''
+  }
+  
+  
+  responseSubmitted = false;
   surveySubmitted = false;
   storedId: string;
+  qId: string;
   questionSubmitted = false;
 
   questions?: Question[];
@@ -47,7 +62,8 @@ export class SurveyCreateComponent implements OnInit {
   constructor(private surveyService: SurveyService,
     private questionService: QuestionService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private responseService: ResponseService) { }
 
   ngOnInit(): void {
   }
@@ -72,19 +88,7 @@ export class SurveyCreateComponent implements OnInit {
         });
   }
 
-  addQuestion() {
-    if (this.questionArray.length < 10) {
-      this.questionArray.length++;
-      console.log(this.questionArray.length);
-    }
-  }
-
-  removeQuestion() {
-    if (this.questionArray.length > 1) {
-      this.questionArray.length--;
-      console.log(this.questionArray.length);
-    }
-  }
+  
 
   newQuestion() {
     this.isButtonVisible = false;
@@ -213,4 +217,24 @@ export class SurveyCreateComponent implements OnInit {
       console.log(this.radioArray.length);
     }
   }
+  saveAnswer(): void {
+    const resData = {
+      responseText: this.responses.responseText,
+      questionId: this.qId,
+    }
+    
+      this.responseService.create(resData)
+    .subscribe(
+      response => {
+        console.log(response);
+        this.responseSubmitted = true;
+        
+      },
+      error => {
+        console.log(error);
+      });
+    }
+
+
+  
 }

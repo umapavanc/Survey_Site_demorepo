@@ -21,3 +21,8 @@ thead {
 table {
     min-width: 400px;
 }
+
+.table tr.active td {
+    background-color:#526d9e !important;
+    color: white;
+  }
