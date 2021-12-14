@@ -114,4 +114,23 @@ export class SurveyEditComponent implements OnInit {
     this.questionIndex = index;
   }
 
+  deleteQuestion(id: string): void {
+    this.questionService.delete(id)
+      .subscribe(
+        response => {
+          console.log(response);
+          console.log("log" + this.question.id)
+        },
+        error => {
+          console.log(error);
+        }
+      )
+      this.refresh();
+  }
+
+  refresh(): void {
+    this.ngOnInit();
+    this.questionIndex = -1;
+  }
+
 }

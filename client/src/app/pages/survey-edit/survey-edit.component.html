@@ -17,14 +17,20 @@
 
         <h1>Questions</h1>
       
-        <form *ngFor="let question of questions; let i = index"
+        <div *ngFor="let question of questions; let i = index"
         [class.active]="i == questionIndex">
             <div>
-                <label for="questionText">Question {{questionIndex}}</label>
-                <input type="text" class="form-control" id="questionText" [(ngModel)]="question.questionText" name="questionText" />
-            </div>
+                <label for="questionIndex" >Question {{questionIndex}}</label>
 
-        </form>
+                <div>
+                <input type="text" class="form-control" id="questionText" [(ngModel)]="question.questionText" name="questionText" />
+                <button class="btn-sm btn-warning mr-1" (click)="deleteQuestion(question.id)" [(ngModel)]="question.id" name="fieldName" ngDefaultControl>
+                   Remove Question
+                </button>
+            </div>
+            </div>
+           
+        </div>
 
 
 
