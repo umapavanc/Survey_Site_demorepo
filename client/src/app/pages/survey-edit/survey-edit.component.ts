@@ -33,6 +33,7 @@ export class SurveyEditComponent implements OnInit {
   questions: Question[];
   surveyId = '';
   questionIndex = -1;
+  questionNumber: any;
 
  
   constructor(

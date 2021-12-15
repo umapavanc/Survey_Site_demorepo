@@ -18,7 +18,7 @@ Purpose - Stylesheet for survey-edit component
 }
 
 .edit-buttons {
-    margin-top:20px;
+    margin-top:25px;
     display: inline;
 }
 
@@ -49,4 +49,7 @@ input{
 .alert-primary{
     max-width: 30%;
     text-align: center;
+}
+.qHeading{
+    margin-bottom: 5px;
 }

@@ -19,9 +19,9 @@
       
         <div *ngFor="let question of questions; let i = index"
         [class.active]="i == questionIndex">
-            <div>
-                <label for="questionIndex" >Question {{questionIndex}}</label>
 
+                <label class="qHeading">Question {{i+1}}</label>
+           
                 <div class="col-md-10">
                 <input type="text" class="form-control" id="questionText" [(ngModel)]="question.questionText" name="questionText" />
                 
@@ -40,7 +40,7 @@
                     Update Question
                  </button>
             </div>
-            </div>
+           
            
         </div>
 
