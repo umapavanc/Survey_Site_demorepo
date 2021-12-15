@@ -31,7 +31,7 @@
       </span>
       <div class="col-md-5">
         <input class="form-control" [(ngModel)]="question.questionText" required placeholder="Enter your question"
-          name="question" (ngModelChange)="enableSaveBtn(quest.value)" #quest />
+          name="question"  #quest />
       </div>
 
       <div class="col-md-2">
@@ -43,10 +43,16 @@
           <option [value]="3">Multiple Choice</option>
         </select>
       </div>
-      <div class="col-md-5">
+
+      <!-- this button is activated only when questions that require no answer options are selected (text answer and true & false)-->
+      <div class="col-md-5" #customSelect *ngIf="customSelect.value != '3'">
+        <button type="submit" class="btn btn-primary my-1" (click)="saveQuestion();"
+          [disabled]="btnDisable">Add Question</button>  
+      </div>
+      <!-- this button is activated only when multiple choice questions are selected because it also calls that saveAnswer function on submit-->
+      <div class="col-md-5" #customSelect *ngIf="customSelect.value == '3'">
         <button type="submit" class="btn btn-primary my-1" (click)="saveQuestion(); saveAnswer();"
-          [disabled]="btnDisable">Save</button>
-        
+          [disabled]="btnDisable1">Add Question</button>  
       </div>
     </div>
 
@@ -81,13 +87,14 @@
     <div *ngFor="let i of checkArray">
       <div class="row" *ngIf="isShownCheckBox">
         <div class="col-md-5">
-          <div class="form-check">
+       <!--<section *ngFor="let response of responses; let i = index">--> 
        
-            <label class="form-check-label" for="gridCheck1">
-              <input class="form-control" placeholder="Enter answer option" required name="answer" size="50" [(ngModel)]="responses.responseText" />
-            </label>
-          </div>
-        </div>
+         
+              <input class="form-control" placeholder="Enter answer option" required name="response_{{i}}" size="50" [(ngModel)]="response.responseText" /> 
+         
+        
+      <!--</section>-->
+      
         <div class="col-md-2">
           <a class="p-1" (click)="addCheck()" ><i class="far fa-plus-square fa-2x"></i></a>
           <a class="p-1" (click)="removeCheck()"> <i class="far fa-minus-square fa-2x"></i></a>
@@ -97,7 +104,7 @@
 
     <div class="row" *ngIf="surveySubmitted">
       <div class="col-md-4 mt-1">
-        <button class="btn btn-success" (click)="closeSurvey()">Submit Questions</button>
+        <button class="btn btn-success" (click)="closeSurvey()">Save Survey & Close</button>
       </div>
     </div>
 

@@ -30,11 +30,11 @@ export class SurveyCreateComponent implements OnInit {
     surveyId: ''
   }
 
-  responses: Response = {
+  response: Response = {
     responseText: '',
     questionId: ''
   }
-  
+  responses: Response[];
   
   responseSubmitted = false;
   surveySubmitted = false;
@@ -47,6 +47,7 @@ export class SurveyCreateComponent implements OnInit {
   currentIndex = -1;
 
   btnDisable: boolean = true;
+  btnDisable1: boolean = true;
   isShownQuestions: boolean = false;
   isButtonVisible: boolean = false;
   selectedType: string = "0";
@@ -88,12 +89,9 @@ export class SurveyCreateComponent implements OnInit {
         });
   }
 
-  
 
   newQuestion() {
     this.isButtonVisible = false;
-    //this.selectedType = "0";
-   // this.question = null;
     this.isShownText = false;
     this.isShownRadioButn = false;
     this.isShownCheckBox = false;
@@ -137,20 +135,16 @@ export class SurveyCreateComponent implements OnInit {
     }
   }
 
-  enableSaveBtn(value) {
-    if (value != '' && this.question.questionType != 0) {
-      this.btnDisable = false;
-    }
-    else{
-      this.btnDisable = true;
-    }
-  }
-
   onChange(value) {
-    if (this.question.questionText != '' && value != "0") {
+    if (this.question.questionText != '' && value == "1" || value == "2") {
       this.btnDisable = false;
     }else{
       this.btnDisable = true;
+    }
+    if (this.question.questionText != '' && value == "3" ) {
+      this.btnDisable1 = false;
+    }else{
+      this.btnDisable1 = true;
     }
     if (value == "1") {
       this.isShownText = true;
@@ -173,20 +167,6 @@ export class SurveyCreateComponent implements OnInit {
       this.isShownCommentBox = false;
       this.isShownStarRating = false;
     }
-    else if (value == "4") {
-      this.isShownCommentBox = true;
-      this.isShownRadioButn = false;
-      this.isShownCheckBox = false;
-      this.isShownText = false;
-      this.isShownStarRating = false;
-    }
-    else if (value == "5") {
-      this.isShownText = false;
-      this.isShownRadioButn = false;
-      this.isShownCheckBox = false;
-      this.isShownCommentBox = false;
-      this.isShownStarRating = true;
-    }
     console.log(value);
   }
 
@@ -204,22 +184,9 @@ export class SurveyCreateComponent implements OnInit {
     }
   }
 
-  addRadio() {
-    if (this.radioArray.length < 5) {
-      this.radioArray.length++;
-      console.log(this.radioArray.length);
-    }
-  }
-
-  removeRadio() {
-    if (this.radioArray.length > 1) {
-      this.radioArray.length--;
-      console.log(this.radioArray.length);
-    }
-  }
   saveAnswer(): void {
     const resData = {
-      responseText: this.responses.responseText,
+      responseText: this.response.responseText,
       questionId: this.qId,
     }
     
