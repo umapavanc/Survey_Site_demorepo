@@ -21,7 +21,8 @@ exports.create = (req, res) => {
     const survey = new Survey({
         title: req.body.title,
         description: req.body.description,
-        published: req.body.published ? req.body.published : false
+        published: req.body.published ? req.body.published : false,
+        user: req.body.user
     });
 
     //save survey in db

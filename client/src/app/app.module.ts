@@ -55,7 +55,7 @@ import { TakeSurveyComponent } from './pages/take-survey/take-survey.component';
     BrowserAnimationsModule,
     
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, ProfileComponent],
   bootstrap: [AppComponent],
   
 })

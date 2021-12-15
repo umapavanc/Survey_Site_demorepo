@@ -19,7 +19,8 @@ export class SurveyEditComponent implements OnInit {
     id: '',
     title: '',
     description: '',
-    published: false
+    published: false,
+    user: ''
   };
   message = '';
 
