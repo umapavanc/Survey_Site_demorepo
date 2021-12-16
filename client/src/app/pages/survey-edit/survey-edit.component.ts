@@ -123,10 +123,7 @@ export class SurveyEditComponent implements OnInit {
 
   // QUESTION EDITING FUNCTIONS
 
-  displayAllQuestions(question: Question, index: number): void {
-    this.surveyId = question.surveyId;
-    this.questionIndex = index;
-  }
+ 
 
   deleteQuestion(id: string): void {
     this.questionService.delete(id)
