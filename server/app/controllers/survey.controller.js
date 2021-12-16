@@ -136,15 +136,18 @@ exports.delete = (req, res) => {
 
 // Retrieve all surveys from the database.
 exports.findByUser = (req, res) => {
-  const user = req.body.user;
-  Survey.find({ user: { $regex: new RegExp(user), $options: "i" } })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving surveys."
+  const user = req.params.user;
+  var condition = user ? { user: { $regex: new RegExp(user), $options: "i" } } : {};
+
+    Survey.find(condition)
+      .then(data => {
+        if (!data)
+          res.status(404).send({ message: "Survey with with username " + user + " not found."});
+        else res.send(data);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .send({ message: "Error retrieving Survey with username=" + user });
       });
-    });
 };

@@ -26,7 +26,7 @@ export class SurveyService {
   }
 
   getSurveyByUser(user: string): Observable<any>{
-    return this.http.get<any>(`${baseURL}/user?=${user}`)
+    return this.http.get<any>(`${baseURL}/user/${user}`)
   }
 
   create(data: any): Observable<any> {
