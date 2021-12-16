@@ -18,6 +18,8 @@ module.exports = app => {
     //route to retrieve all published surveys
     router.get("/published", surveys.findAllPublished);
 
+    router.get("/user", surveys.findByUser);
+
     //route to get survey by id
     router.get("/:id", surveys.findOne);
 

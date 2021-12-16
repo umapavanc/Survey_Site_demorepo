@@ -133,3 +133,18 @@ exports.delete = (req, res) => {
         });
       });
 };
+
+// Retrieve all surveys from the database.
+exports.findByUser = (req, res) => {
+  const user = req.body.user;
+  Survey.find({ user: { $regex: new RegExp(user), $options: "i" } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving surveys."
+      });
+    });
+};
