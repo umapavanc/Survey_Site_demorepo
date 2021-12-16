@@ -1,9 +1,7 @@
 <div class="container">
   <div class="jumbotron">
     <h1>Survey List</h1>
-    <p>
-      list of all active surveys, visible to anyone!!
-    </p>
+
   </div>
 
   <div class="list row">
@@ -17,38 +15,43 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <button class="btn btn-success" [disabled]="btnDisable" (click)="takeSurvey()"><i class="fas fa-user-edit"></i> Take Survey</button>
-      <button class="btn btn-success m-1"  (click)="export()"><i class="fas fa-file-export"></i> Export Results Report</button>
+    <div class="col-md-6" *ngIf="currentSurvey">
+      <button class="btn btn-success" routerLink="/questions/takeSurvey/{{currentSurvey.id}}"><i
+          class="fas fa-user-edit"></i> Take Survey</button>
+      <button class="btn btn-success m-1" (click)="export()" *ngIf = "isLoggedIn"><i class="fas fa-file-export"></i> Export Results
+        Report</button>
     </div>
-      <!--<ul class="list-group">
+    <!--<ul class="list-group">
         <li class="list-group-item" *ngFor="let survey of surveys; let i = index" [class.active]="i == currentIndex"
           (click)="setCurrentSurvey(survey, i)">
           {{ survey.title}}
         </li>
       </ul>-->
   </div>
-  <table id = "exportData" class="table">
-    <thead>
-      <tr class="table-primary">
-        <th>#</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Questions</th>
-        <th>Responses</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let survey of surveys; let i = index;" [class.active]="i == currentIndex"
-        (click)="setCurrentSurvey(survey, i)">
-        <td>{{ i + 1 }}</td>
-        <td> {{ survey.title}} </td>
-        <td> {{ survey.description}} </td>
-        <td>3</td>
-        <td>5</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table id="exportData" class="table table-hover">
+      <thead>
+        <tr class="table-primary">
+          <th>#</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Questions</th>
+          <th>Responses</th>
+        </tr>
+      </thead>
+      <tbody style="overflow-y: scroll">
+        <tr *ngFor="let survey of surveys; let i = index;" [class.active]="i == HighlightRow"
+          (click)="setCurrentSurvey(survey, i); ClickedRow(i)">
+          <!-- highlight selected row and set the current survey-->
+          <td>{{ i + 1 }}</td>
+          <td> {{ survey.title}} </td>
+          <td> {{ survey.description}} </td>
+          <td>3</td>
+          <td>5</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!--
