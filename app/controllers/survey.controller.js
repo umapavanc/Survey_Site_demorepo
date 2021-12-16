@@ -21,7 +21,8 @@ exports.create = (req, res) => {
     const survey = new Survey({
         title: req.body.title,
         description: req.body.description,
-        published: req.body.published ? req.body.published : false
+        published: req.body.published ? req.body.published : false,
+        user: req.body.user
     });
 
     //save survey in db
@@ -33,11 +34,11 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message: err.message || "An error occured when creating the Survey."
-            });;
+            });
         })
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all surveys from the database.
 exports.findAll = (req, res) => {
     const title = req.query.title;
     var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
@@ -130,5 +131,23 @@ exports.delete = (req, res) => {
         res.status(500).send({
           message: "Could not delete Survey with id=" + id
         });
+      });
+};
+
+// Retrieve all surveys from the database.
+exports.findByUser = (req, res) => {
+  const user = req.params.user;
+  var condition = user ? { user: { $regex: new RegExp(user), $options: "i" } } : {};
+
+    Survey.find(condition)
+      .then(data => {
+        if (!data)
+          res.status(404).send({ message: "Survey with with username " + user + " not found."});
+        else res.send(data);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .send({ message: "Error retrieving Survey with username=" + user });
       });
 };
