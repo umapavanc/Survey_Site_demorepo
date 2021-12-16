@@ -7,18 +7,19 @@ Purpose - Stylesheet for survey-edit component
 .edit-form {
     margin-top: 20px !important;
     margin-left: 20px !important;
-    width: 50%
+    width: 80%
 }
 
 
 .btn {
-    float: left;
     margin-right: 20px;
     margin-left: 0;
+    display: inline;
 }
 
 .edit-buttons {
-    margin-top:20px;
+    margin-top:25px;
+    display: inline;
 }
 
 label {
@@ -33,4 +34,22 @@ h1 {
     float:none;
     margin-top: 10px;
     margin-bottom: 20px;
+}
+
+.p-2{
+    margin-right: 20px;
+    display: inline;
+}
+
+input{
+    max-width: 50% !important;
+    min-width: 400px !important;
+}
+
+.alert-primary{
+    max-width: 30%;
+    text-align: center;
+}
+.qHeading{
+    margin-bottom: 5px;
 }

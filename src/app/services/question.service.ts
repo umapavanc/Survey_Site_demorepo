@@ -5,7 +5,7 @@ import { Question } from '../models/question.model'
 
 
 
-const baseURL = 'http://localhost:8080/api/questions';
+const baseURL = 'https://survey-server-group.herokuapp.com/api/questions';   //'http://localhost:8080/api/questions';
 
 
 @Injectable({

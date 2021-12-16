@@ -1,1 +1,38 @@
-<p>take-survey works!</p>
+<div *ngIf="currentSurvey.id" class="edit-form">
+
+    <div class="card text-white bg-primary mb-3" style="max-width: 30rem;">
+        <div class="card-body">
+          <h1 class="card-title">Title: {{currentSurvey.title}}</h1>
+          <h2 class="card-text">Description: {{currentSurvey.description}}</h2>
+          <a href="/home" class="btn btn-danger">Back to Survey List</a>
+        </div>
+      </div>
+
+
+      <div *ngFor="let question of questions; let i = index"
+      [class.active]="i == questionIndex">
+
+              <label class="qHeading">Question </label>
+         
+              <div class="col-md-10">
+              <p type="text" class="form-control" id="questionText"  name="questionText"> 
+                <strong>  {{i+1}}) {{question.questionText}}</strong></p>
+              
+                 
+                
+              
+          </div>
+         
+         
+      </div>
+
+<div class="edit-buttons">
+    <button type="submit" class="btn btn-success mb-2" >
+        Submit Survey
+    </button> 
+</div>
+
+<div *ngIf="!currentSurvey.id">
+    <br />
+    <p>Cannot access this Survey...</p>
+</div>

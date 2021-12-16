@@ -14,11 +14,13 @@ import { Question } from 'src/app/models/question.model';
 })
 export class SurveyEditComponent implements OnInit {
   id: string = ""
+  showMsg= false;
   currentSurvey: Survey = {
     id: '',
     title: '',
     description: '',
-    published: false
+    published: false,
+    user: ''
   };
   message = '';
 
@@ -31,6 +33,7 @@ export class SurveyEditComponent implements OnInit {
   questions: Question[];
   surveyId = '';
   questionIndex = -1;
+  questionNumber: any;
 
  
   constructor(
@@ -61,6 +64,13 @@ export class SurveyEditComponent implements OnInit {
       });
   }
 
+  // SURVEY EDITING FUNCTIONS 
+  isShownText: boolean = false;
+  isShownRadioButn: boolean = false;
+  isShownCheckBox: boolean = false;
+  isShownCommentBox: boolean = false;
+  isShownStarRating: boolean = false;
+
   editSurvey(): void {
     this.surveyService.updateSurvey(this.id, this.currentSurvey)
       .subscribe(() => this.router.navigateByUrl("/surveys"))
@@ -79,6 +89,7 @@ export class SurveyEditComponent implements OnInit {
           this.currentSurvey.published = status;
           console.log(response);
           this.message = response.message;
+          this.showMsg= true;
         },
         error => {
           console.log(error);
@@ -91,6 +102,7 @@ export class SurveyEditComponent implements OnInit {
         response => {
           console.log(response);
           this.message = response.message;
+          this.showMsg= true;
         },
         error => {
           console.log(error);
@@ -109,10 +121,9 @@ export class SurveyEditComponent implements OnInit {
         });
   }
 
-  displayAllQuestions(question: Question, index: number): void {
-    this.surveyId = question.surveyId;
-    this.questionIndex = index;
-  }
+  // QUESTION EDITING FUNCTIONS
+
+ 
 
   deleteQuestion(id: string): void {
     this.questionService.delete(id)
@@ -120,12 +131,59 @@ export class SurveyEditComponent implements OnInit {
         response => {
           console.log(response);
           console.log("log" + this.question.id)
+          this.message = response.message;
+          this.showMsg= true;
         },
         error => {
           console.log(error);
         }
       )
       this.refresh();
+  }
+
+  updateQuestion(id: string, text: string, type: number): void {
+    const data = {
+      questionText: text,
+      questionType: type
+    };
+    this.questionService.update(id, data)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.message = response.message;
+          console.log("question ID " + id)
+          console.log("text " + text)
+          this.showMsg= true;
+        },
+        error => {
+          console.log(error);
+        });
+        this.refresh();
+  }
+
+  onChange(value) {
+    if (value == "1") {
+      this.isShownText = true;
+      this.isShownRadioButn = false;
+      this.isShownCheckBox = false;
+      this.isShownCommentBox = false;
+      this.isShownStarRating = false;
+    }
+    else if (value == "2") {
+      this.isShownRadioButn = true;
+      this.isShownText = false;
+      this.isShownCheckBox = false;
+      this.isShownCommentBox = false;
+      this.isShownStarRating = false;
+    }
+    else if (value == "3") {
+      this.isShownCheckBox = true;
+      this.isShownRadioButn = false;
+      this.isShownText = false;
+      this.isShownCommentBox = false;
+      this.isShownStarRating = false;
+    }
+    console.log(value);
   }
 
   refresh(): void {

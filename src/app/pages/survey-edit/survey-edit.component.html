@@ -19,24 +19,39 @@
       
         <div *ngFor="let question of questions; let i = index"
         [class.active]="i == questionIndex">
-            <div>
-                <label for="questionIndex" >Question {{questionIndex}}</label>
 
-                <div>
+                <label class="qHeading">Question {{i+1}}</label>
+           
+                <div class="col-md-10">
                 <input type="text" class="form-control" id="questionText" [(ngModel)]="question.questionText" name="questionText" />
-                <button class="btn-sm btn-warning mr-1" (click)="deleteQuestion(question.id)" [(ngModel)]="question.id" name="fieldName" ngDefaultControl>
+                
+                    <select class="custom-select p-2" [(ngModel)]="question.questionType" (change)="onChange(customSelect.value)"
+                      #customSelect>
+                      <option selected [value]="0">Type of question</option>
+                      <option [value]="1">Text Field</option>
+                      <option [value]="2">True or False</option>
+                      <option [value]="3">Multiple Choice</option>
+                    </select>
+                  
+                <button class="btn-sm btn-warning mr-1" (click)="deleteQuestion(question.id)" [(ngModel)]="question.id" name="deleteQuestion" ngDefaultControl>
                    Remove Question
                 </button>
+                <button class="btn-sm btn-primary mr-1" (click)="updateQuestion(question.id, question.questionText, question.questionType)" [(ngModel)]="question.id" name="updateQuestion" ngDefaultControl>
+                    Update Question
+                 </button>
             </div>
-            </div>
+           
            
         </div>
 
-
+        <div *ngIf="showMsg" class="alert alert-primary" role="alert">
+            {{ message }}
+          </div>
+       
 
         <div class="edit-buttons">
         <button type="submit" class="btn btn-success mb-2" (click)="editSurvey()">
-            Update
+            Save & Close Survey
         </button>
         
         <button class="btn btn-danger mr-2" (click)="deleteSurvey()">
@@ -54,7 +69,7 @@
             {{ currentSurvey.published ? "Published" : "Pending" }}
         </div>
         </div>
-        <p>{{ message }}</p>
+        
 
 
     </div>

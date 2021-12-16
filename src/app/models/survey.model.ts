@@ -8,4 +8,5 @@ export class Survey{
     title?: string;
     description?: string;
     published?: boolean;
+    user: string;
 }

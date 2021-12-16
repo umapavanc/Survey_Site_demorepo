@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from 'src/app/models/response.model';
 import { ResponseService } from 'src/app/services/response.service';
 import { NgForm } from '@angular/forms';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class SurveyCreateComponent implements OnInit {
   survey: Survey = {
     title: '',
     description: '',
-    published: false
+    published: false,
+    user: ''
   };
   // QUESTION IMPLEMENTATION
   question: Question = {
@@ -30,11 +32,11 @@ export class SurveyCreateComponent implements OnInit {
     surveyId: ''
   }
 
-  responses: Response = {
+  response: Response = {
     responseText: '',
     questionId: ''
   }
-  
+  responses: Response[];
   
   responseSubmitted = false;
   surveySubmitted = false;
@@ -47,8 +49,9 @@ export class SurveyCreateComponent implements OnInit {
   currentIndex = -1;
 
   btnDisable: boolean = true;
+  btnDisable1: boolean = true;
+  btnDisable2: boolean = true;
   isShownQuestions: boolean = false;
-  isButtonVisible: boolean = false;
   selectedType: string = "0";
   checkArray = new Array(1);
   radioArray = new Array(2);
@@ -58,20 +61,25 @@ export class SurveyCreateComponent implements OnInit {
   isShownCheckBox: boolean = false;
   isShownCommentBox: boolean = false;
   isShownStarRating: boolean = false;
+  currentUser: any;
 
   constructor(private surveyService: SurveyService,
     private questionService: QuestionService,
     private route: ActivatedRoute,
     private router: Router,
-    private responseService: ResponseService) { }
+    private responseService: ResponseService,
+    private token: TokenStorageService
+    ) { }
 
   ngOnInit(): void {
+    this.currentUser = this.token.getUser();
   }
 
   createSurvey(): void {
     const data = {
       title: this.survey.title,
-      description: this.survey.description
+      description: this.survey.description,
+      user: this.currentUser.username
     };
 
     this.surveyService.create(data)
@@ -81,6 +89,7 @@ export class SurveyCreateComponent implements OnInit {
           this.surveySubmitted = true;
           this.storedId = response.id;
           console.log("HERE IT IS" + this.storedId);
+          console.log("user " + this.currentUser.username);
           this.isShownQuestions = true;
         },
         error => {
@@ -88,16 +97,16 @@ export class SurveyCreateComponent implements OnInit {
         });
   }
 
-  
 
   newQuestion() {
-    this.isButtonVisible = false;
-    //this.selectedType = "0";
-   // this.question = null;
+
     this.isShownText = false;
     this.isShownRadioButn = false;
     this.isShownCheckBox = false;
     this.isShownCommentBox = false;
+    this.btnDisable= true;
+    this.btnDisable1= true;
+    this.btnDisable2=true;
   }
 
   saveQuestion(): void {
@@ -111,6 +120,7 @@ export class SurveyCreateComponent implements OnInit {
         questionType: this.question.questionType,
         surveyId: this.storedId
       };
+      
       this.arrayOfQuestions.push(data);
       this.question.questionText = '';
       this.question.questionType = 0;
@@ -118,6 +128,8 @@ export class SurveyCreateComponent implements OnInit {
       console.log(data)
       console.log(this.arrayOfQuestions)
     }
+
+    
 
     /**/
   }
@@ -137,20 +149,16 @@ export class SurveyCreateComponent implements OnInit {
     }
   }
 
-  enableSaveBtn(value) {
-    if (value != '' && this.question.questionType != 0) {
-      this.btnDisable = false;
-    }
-    else{
-      this.btnDisable = true;
-    }
-  }
-
   onChange(value) {
-    if (this.question.questionText != '' && value != "0") {
+    if (this.question.questionText != '' && value == "1" || value == "2") {
       this.btnDisable = false;
     }else{
       this.btnDisable = true;
+    }
+    if (this.question.questionText != '' && value == "3" ) {
+      this.btnDisable1 = false;
+    }else{
+      this.btnDisable1 = true;
     }
     if (value == "1") {
       this.isShownText = true;
@@ -173,20 +181,6 @@ export class SurveyCreateComponent implements OnInit {
       this.isShownCommentBox = false;
       this.isShownStarRating = false;
     }
-    else if (value == "4") {
-      this.isShownCommentBox = true;
-      this.isShownRadioButn = false;
-      this.isShownCheckBox = false;
-      this.isShownText = false;
-      this.isShownStarRating = false;
-    }
-    else if (value == "5") {
-      this.isShownText = false;
-      this.isShownRadioButn = false;
-      this.isShownCheckBox = false;
-      this.isShownCommentBox = false;
-      this.isShownStarRating = true;
-    }
     console.log(value);
   }
 
@@ -204,22 +198,45 @@ export class SurveyCreateComponent implements OnInit {
     }
   }
 
-  addRadio() {
-    if (this.radioArray.length < 5) {
-      this.radioArray.length++;
-      console.log(this.radioArray.length);
+  saveMCQ(): void {
+    if (this.arrayOfQuestions == null) {
+      this.arrayOfQuestions = new Array();
+      console.log("Created");
     }
+    if (this.question.questionText != '' && this.question.questionType != 0) {
+      const data = {
+        questionText: this.question.questionText,
+        questionType: this.question.questionType,
+        surveyId: this.storedId
+      };
+
+      this.questionService.create(data)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.qId = response.id;
+          console.log("HERE IT IS" + this.qId);
+        },
+        error => {
+          console.log(error);
+        });
+      
+      this.arrayOfQuestions.push(data);
+      console.log(data)
+      console.log(this.arrayOfQuestions)
+      this.btnDisable2=false;
+    }
+
+    
+
+    /**/
   }
 
-  removeRadio() {
-    if (this.radioArray.length > 1) {
-      this.radioArray.length--;
-      console.log(this.radioArray.length);
-    }
-  }
+
+
   saveAnswer(): void {
     const resData = {
-      responseText: this.responses.responseText,
+      responseText: this.response.responseText,
       questionId: this.qId,
     }
     
@@ -233,6 +250,10 @@ export class SurveyCreateComponent implements OnInit {
       error => {
         console.log(error);
       });
+
+      this.question.questionText = '';
+      this.question.questionType = 0;
+      this.newQuestion();
     }
 
 

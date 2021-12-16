@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Survey } from 'src/app/models/survey.model';
 import { SurveyService } from 'src/app/services/survey.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-survey-list',
@@ -9,23 +10,31 @@ import { SurveyService } from 'src/app/services/survey.service';
 })
 export class SurveyListComponent implements OnInit {
 
+
+
   surveys?: Survey[];
   currentSurvey?: Survey;
   currentIndex = -1;
   title = '';
+  currentUser: any;
 
-  constructor(private surveyService: SurveyService) { }
+
+  constructor(private surveyService: SurveyService,
+    private token: TokenStorageService) { }
 
   ngOnInit(): void {
-    this.getSurveys();
+    this.currentUser = this.token.getUser();
+    this.getSurveys();  
+    console.log("username" + this.currentUser.username)  
   }
 
   getSurveys(): void {
-    this.surveyService.getAll()
+    this.surveyService.getSurveyByUser(this.currentUser.username)
       .subscribe(
         data => {
           this.surveys = data;
           console.log(data);
+          
         },
         error => {
           console.log(error);
