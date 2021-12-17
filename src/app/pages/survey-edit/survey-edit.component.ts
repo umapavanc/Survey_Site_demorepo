@@ -14,7 +14,7 @@ import { Question } from 'src/app/models/question.model';
 })
 export class SurveyEditComponent implements OnInit {
   id: string = ""
-  showMsg= false;
+  showMsg: boolean = false;
   currentSurvey: Survey = {
     id: '',
     title: '',
@@ -35,7 +35,7 @@ export class SurveyEditComponent implements OnInit {
   questionIndex = -1;
   questionNumber: any;
 
- 
+
   constructor(
     private surveyService: SurveyService,
     private route: ActivatedRoute,
@@ -47,21 +47,21 @@ export class SurveyEditComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id') || ""
     this.surveyService.getSurveyById(this.id)
       .subscribe(data => this.currentSurvey = data);
-    
-    this.surveyId =  this.route.snapshot.paramMap.get('id') || "";
+
+    this.surveyId = this.route.snapshot.paramMap.get('id') || "";
 
     this.questionService.findBySurvey(this.surveyId)
-    .subscribe(
-      questionData => {
-        this.questions = questionData;
-        
-        console.log(questionData);
-        console.log('LOG ID' + this.surveyId)
-        
-      },
-      error => {
-        console.log(error);
-      });
+      .subscribe(
+        questionData => {
+          this.questions = questionData;
+
+          console.log(questionData);
+          console.log('LOG ID' + this.surveyId)
+
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   // SURVEY EDITING FUNCTIONS 
@@ -89,7 +89,7 @@ export class SurveyEditComponent implements OnInit {
           this.currentSurvey.published = status;
           console.log(response);
           this.message = response.message;
-          this.showMsg= true;
+          this.showMsg = true;
         },
         error => {
           console.log(error);
@@ -102,7 +102,7 @@ export class SurveyEditComponent implements OnInit {
         response => {
           console.log(response);
           this.message = response.message;
-          this.showMsg= true;
+          this.showMsg = true;
         },
         error => {
           console.log(error);
@@ -123,7 +123,7 @@ export class SurveyEditComponent implements OnInit {
 
   // QUESTION EDITING FUNCTIONS
 
- 
+
 
   deleteQuestion(id: string): void {
     this.questionService.delete(id)
@@ -132,13 +132,13 @@ export class SurveyEditComponent implements OnInit {
           console.log(response);
           console.log("log" + this.question.id)
           this.message = response.message;
-          this.showMsg= true;
+          this.showMsg = true;
         },
         error => {
           console.log(error);
         }
       )
-      this.refresh();
+    this.refresh();
   }
 
   updateQuestion(id: string, text: string, type: number): void {
@@ -153,12 +153,12 @@ export class SurveyEditComponent implements OnInit {
           this.message = response.message;
           console.log("question ID " + id)
           console.log("text " + text)
-          this.showMsg= true;
+          this.showMsg = true;
         },
         error => {
           console.log(error);
         });
-        this.refresh();
+    this.refresh();
   }
 
   onChange(value) {

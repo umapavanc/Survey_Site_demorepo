@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     <div *ngIf="currentSurvey.id" class="edit-form">
         <h1>Survey</h1>
         <form>
@@ -12,65 +12,65 @@
                     name="description" />
             </div>
 
-            
+
         </form>
 
         <h1>Questions</h1>
-      
-        <div *ngFor="let question of questions; let i = index"
-        [class.active]="i == questionIndex">
 
-                <label class="qHeading">Question {{i+1}}</label>
-           
-                <div class="col-md-10">
-                <input type="text" class="form-control" id="questionText" [(ngModel)]="question.questionText" name="questionText" />
-                
-                    <select class="custom-select p-2" [(ngModel)]="question.questionType" (change)="onChange(customSelect.value)"
-                      #customSelect>
-                      <option selected [value]="0">Type of question</option>
-                      <option [value]="1">Text Field</option>
-                      <option [value]="2">True or False</option>
-                      <option [value]="3">Multiple Choice</option>
-                    </select>
-                  
-                <button class="btn-sm btn-warning mr-1" (click)="deleteQuestion(question.id)" [(ngModel)]="question.id" name="deleteQuestion" ngDefaultControl>
-                   Remove Question
+        <div *ngFor="let question of questions; let i = index" [class.active]="i == questionIndex">
+
+            <label class="qHeading">Question {{i+1}}</label>
+
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="questionText" [(ngModel)]="question.questionText"
+                    name="questionText" />
+
+                <select class="custom-select p-2" [(ngModel)]="question.questionType"
+                    (change)="onChange(customSelect.value)" #customSelect>
+                    <option selected [value]="0">Type of question</option>
+                    <option [value]="1">Text Field</option>
+                    <option [value]="2">Multiple Choice</option>
+                    <option [value]="3">Checkboxes</option>
+                    <option [value]="4">Comment Box</option>
+                </select>
+
+                <button class="btn-sm btn-warning mr-1" (click)="deleteQuestion(question.id)" [(ngModel)]="question.id"
+                    name="deleteQuestion" ngDefaultControl>
+                    Remove Question
                 </button>
-                <button class="btn-sm btn-primary mr-1" (click)="updateQuestion(question.id, question.questionText, question.questionType)" [(ngModel)]="question.id" name="updateQuestion" ngDefaultControl>
+                <button class="btn-sm btn-primary mr-1"
+                    (click)="updateQuestion(question.id, question.questionText, question.questionType)"
+                    [(ngModel)]="question.id" name="updateQuestion" ngDefaultControl>
                     Update Question
-                 </button>
+                </button>
             </div>
-           
-           
         </div>
 
-        <div *ngIf="showMsg" class="alert alert-primary" role="alert">
+        <div *ngIf="showMsg" id="msgAlert" class="alert alert-primary" role="alert">
             {{ message }}
-          </div>
-       
+        </div>
+
 
         <div class="edit-buttons">
-        <button type="submit" class="btn btn-success mb-2" (click)="editSurvey()">
-            Save & Close Survey
-        </button>
-        
-        <button class="btn btn-danger mr-2" (click)="deleteSurvey()">
-            Delete
-        </button>
+            <button type="submit" class="btn btn-success mb-2" (click)="editSurvey()">
+                Save & Close Survey
+            </button>
 
-        <button class="btn btn-warning mr-2" *ngIf="currentSurvey.published" (click)="updatePublished(false)">
-            UnPublish
-        </button>
-        <button *ngIf="!currentSurvey.published" class="btn btn-primary mr-2" (click)="updatePublished(true)">
-            Publish
-        </button>
-        <div class="form-group">
-            <label><strong>Status:</strong></label>
-            {{ currentSurvey.published ? "Published" : "Pending" }}
-        </div>
-        </div>
-        
+            <button class="btn btn-danger mr-2" (click)="deleteSurvey()">
+                Delete
+            </button>
 
+            <button class="btn btn-warning mr-2" *ngIf="currentSurvey.published" (click)="updatePublished(false)">
+                UnPublish
+            </button>
+            <button *ngIf="!currentSurvey.published" class="btn btn-primary mr-2" (click)="updatePublished(true)">
+                Publish
+            </button>
+            <div class="form-group">
+                <label><strong>Status:</strong></label>
+                {{ currentSurvey.published ? "Published" : "Pending" }}
+            </div>
+        </div>
 
     </div>
 

@@ -37,11 +37,10 @@ export class SurveyCreateComponent implements OnInit {
     questionId: ''
   }
   responses: Response[];
-  
+  questionId: string;
   responseSubmitted = false;
   surveySubmitted = false;
   storedId: string;
-  qId: string;
   questionSubmitted = false;
 
   questions?: Question[];
@@ -53,15 +52,15 @@ export class SurveyCreateComponent implements OnInit {
   btnDisable2: boolean = true;
   isShownQuestions: boolean = false;
   selectedType: string = "0";
-  checkArray = new Array(1);
-  radioArray = new Array(2);
+  checkArray = new Array(2);
   questionArray = new Array();
   isShownText: boolean = false;
-  isShownRadioButn: boolean = false;
   isShownCheckBox: boolean = false;
   isShownCommentBox: boolean = false;
-  isShownStarRating: boolean = false;
   currentUser: any;
+  optionText: any[] = new Array();
+  toConcatResponse: String = '';
+  responseArray: any[] = new Array();
 
   constructor(private surveyService: SurveyService,
     private questionService: QuestionService,
@@ -69,7 +68,7 @@ export class SurveyCreateComponent implements OnInit {
     private router: Router,
     private responseService: ResponseService,
     private token: TokenStorageService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
@@ -85,11 +84,8 @@ export class SurveyCreateComponent implements OnInit {
     this.surveyService.create(data)
       .subscribe(
         response => {
-          console.log(response);
           this.surveySubmitted = true;
           this.storedId = response.id;
-          console.log("HERE IT IS" + this.storedId);
-          console.log("user " + this.currentUser.username);
           this.isShownQuestions = true;
         },
         error => {
@@ -97,21 +93,19 @@ export class SurveyCreateComponent implements OnInit {
         });
   }
 
-
   newQuestion() {
 
     this.isShownText = false;
-    this.isShownRadioButn = false;
     this.isShownCheckBox = false;
     this.isShownCommentBox = false;
-    this.btnDisable= true;
-    this.btnDisable1= true;
-    this.btnDisable2=true;
+    this.btnDisable = true;
+    this.btnDisable1 = true;
+    this.btnDisable2 = true;
   }
 
   saveQuestion(): void {
     if (this.arrayOfQuestions == null) {
-      this.arrayOfQuestions = new Array();
+      this.arrayOfQuestions = new Array(2);
       console.log("Created");
     }
     if (this.question.questionText != '' && this.question.questionType != 0) {
@@ -120,66 +114,63 @@ export class SurveyCreateComponent implements OnInit {
         questionType: this.question.questionType,
         surveyId: this.storedId
       };
-      
-      this.arrayOfQuestions.push(data);
+      this.submitQuestion(data);
+      if (this.question.questionType == 2 || this.question.questionType == 3) {
+        this.saveResponse(this.questionId);
+      }
+      //this.router.navigate(['/surveys']);
+      //this.arrayOfQuestions.push(data);
       this.question.questionText = '';
       this.question.questionType = 0;
+      this.btnDisable = true;
+      this.optionText = [];
+      this.toConcatResponse = '';
       this.newQuestion();
-      console.log(data)
-      console.log(this.arrayOfQuestions)
     }
-
-    
-
-    /**/
   }
 
-  closeSurvey(): void {
-    for (var i = 0; i < this.arrayOfQuestions.length; i++) {
-      this.questionService.create(this.arrayOfQuestions[i])
-        .subscribe(
-          response => {
-            console.log(response.id);
-            this.questionSubmitted = true;
-            this.router.navigate(['/surveys']);
-          },
-          error => {
-            console.log(error);
-          });
+  onCheckSubmit(): String {
+    for (var i = 0; i < this.optionText.length; i++) {
+      this.toConcatResponse = this.toConcatResponse + this.optionText[i] + ";";
     }
+    this.responseArray.push(this.toConcatResponse);
+    return this.toConcatResponse;
+  }
+
+  submitQuestion(data): void {
+    this.questionService.create(data)
+      .subscribe(
+        response => {
+          this.questionId = response.id;
+          this.questionSubmitted = true;
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   onChange(value) {
-    if (this.question.questionText != '' && value == "1" || value == "2") {
+    var count = 0;
+    if (this.question.questionText != '' && value != "0") {
       this.btnDisable = false;
-    }else{
-      this.btnDisable = true;
     }
-    if (this.question.questionText != '' && value == "3" ) {
-      this.btnDisable1 = false;
-    }else{
-      this.btnDisable1 = true;
+    else {
+      this.btnDisable = true;
     }
     if (value == "1") {
       this.isShownText = true;
-      this.isShownRadioButn = false;
       this.isShownCheckBox = false;
       this.isShownCommentBox = false;
-      this.isShownStarRating = false;
     }
-    else if (value == "2") {
-      this.isShownRadioButn = true;
+    else if (value == "2" || value == "3") {
       this.isShownText = false;
-      this.isShownCheckBox = false;
-      this.isShownCommentBox = false;
-      this.isShownStarRating = false;
-    }
-    else if (value == "3") {
       this.isShownCheckBox = true;
-      this.isShownRadioButn = false;
-      this.isShownText = false;
       this.isShownCommentBox = false;
-      this.isShownStarRating = false;
+    }
+    else if (value == "4") {
+      this.isShownCheckBox = false;
+      this.isShownText = false;
+      this.isShownCommentBox = true;
     }
     console.log(value);
   }
@@ -198,64 +189,52 @@ export class SurveyCreateComponent implements OnInit {
     }
   }
 
-  saveMCQ(): void {
-    if (this.arrayOfQuestions == null) {
-      this.arrayOfQuestions = new Array();
-      console.log("Created");
-    }
-    if (this.question.questionText != '' && this.question.questionType != 0) {
-      const data = {
-        questionText: this.question.questionText,
-        questionType: this.question.questionType,
-        surveyId: this.storedId
-      };
+  // saveMCQ(): void {
+  //   if (this.arrayOfQuestions == null) {
+  //     this.arrayOfQuestions = new Array();
+  //     console.log("Created");
+  //   }
+  //   if (this.question.questionText != '' && this.question.questionType != 0) {
+  //     const data = {
+  //       questionText: this.question.questionText,
+  //       questionType: this.question.questionType,
+  //       surveyId: this.storedId
+  //     };
 
-      this.questionService.create(data)
+  //     this.questionService.create(data)
+  //       .subscribe(
+  //         response => {
+  //           console.log(response);
+  //           this.qId = response.id;
+  //           console.log("HERE IT IS" + this.qId);
+  //         },
+  //         error => {
+  //           console.log(error);
+  //         });
+
+  //     this.arrayOfQuestions.push(data);
+  //     console.log(data)
+  //     console.log(this.arrayOfQuestions)
+  //     this.btnDisable2 = false;
+  //   }
+  // }
+
+  saveResponse(questionId): void {
+
+    const resData = {
+      responseText: this.onCheckSubmit(),
+      questionId: questionId,
+    }
+
+    this.responseService.create(resData)
       .subscribe(
         response => {
-          console.log(response);
-          this.qId = response.id;
-          console.log("HERE IT IS" + this.qId);
+          this.responseSubmitted = true;
+
         },
         error => {
           console.log(error);
         });
-      
-      this.arrayOfQuestions.push(data);
-      console.log(data)
-      console.log(this.arrayOfQuestions)
-      this.btnDisable2=false;
-    }
 
-    
-
-    /**/
   }
-
-
-
-  saveAnswer(): void {
-    const resData = {
-      responseText: this.response.responseText,
-      questionId: this.qId,
-    }
-    
-      this.responseService.create(resData)
-    .subscribe(
-      response => {
-        console.log(response);
-        this.responseSubmitted = true;
-        
-      },
-      error => {
-        console.log(error);
-      });
-
-      this.question.questionText = '';
-      this.question.questionType = 0;
-      this.newQuestion();
-    }
-
-
-  
 }

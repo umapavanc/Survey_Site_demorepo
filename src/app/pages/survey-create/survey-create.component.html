@@ -1,37 +1,29 @@
-<!--<div class="jumbotron p-4">
-  <div class="container text-center">
-    <alert></alert>
-    <router-outlet></router-outlet>
-  </div>
-</div>-->
-
 <div class="container">
-  <!--style="width: 500px; margin: auto;"-->
   <div class="submit-form">
     <div *ngIf="!surveySubmitted">
       <div class="form-group">
         <label for="name">Title</label>
         <input type="text" class="form-control" id="title" required [(ngModel)]="survey.title" name="title" />
       </div>
-
       <div class="form-group">
         <label for="description">Description</label>
         <input class="form-control" id="description" required [(ngModel)]="survey.description" name="description" />
       </div>
-
       <button (click)="createSurvey()" class="btn btn-success mt-10">Create</button>
     </div>
-
+    <!--<div class="alert alert-success alert-dismissible" *ngIf="surveySubmitted">
+      <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      Survey <strong>{{ survey.title }}</strong> successfully created
+    </div>-->
 
     <div class="row" *ngIf="isShownQuestions">
-      <!--*ngFor = "let i of questionArray;let index = index"-->
       <span>
-        <h1 style="float:left;">Questions:</h1><span style="float:right;color:green">Number of questions added: {{
+        <h4 style="float:left;">Question:</h4><span style="float:right;color:green">Number of questions added: {{
           arrayOfQuestions.length }}</span>
       </span>
       <div class="col-md-5">
         <input class="form-control" [(ngModel)]="question.questionText" required placeholder="Enter your question"
-          name="question"  #quest />
+          name="question" #quest />
       </div>
 
       <div class="col-md-2">
@@ -39,48 +31,40 @@
           #customSelect>
           <option selected [value]="0">Type of question</option>
           <option [value]="1">Text Field</option>
-          <option [value]="2">True or False</option>
-          <option [value]="3">Multiple Choice</option>
+          <option [value]="2">Multiple Choice</option>
+          <option [value]="3">Checkboxes</option>
+          <option [value]="4">Comment Box</option>
         </select>
       </div>
-
-      <!-- this button is activated only when questions that require no answer options are selected (text answer and true & false)-->
-      <div class="col-md-5" #customSelect *ngIf="customSelect.value != '3'">
-        <button type="submit" class="btn btn-primary my-1" (click)="saveQuestion();"
-          [disabled]="btnDisable">Add Question</button>  
-      </div>
-      <!-- this button is activated only when multiple choice questions are selected because it also calls that saveAnswer function on submit-->
-      <div class="col-md-2" #customSelect *ngIf="customSelect.value == '3'">
-        <button type="submit" class="btn btn-primary my-1" (click)="saveMCQ()"
-          [disabled]="btnDisable1">Save Question</button> 
-        <button type="submit" class="btn btn-primary my-1" (click)="saveAnswer()"
-          [disabled]="btnDisable2">Save Answer</button> 
+      <div class="col-md-5">
+        <button type="submit" class="btn btn-primary my-1" (click)="saveQuestion()"
+          [disabled]="btnDisable">Save</button>
       </div>
     </div>
-
-  
-    
-      <div class="row" *ngIf="isShownCheckBox">
-        <div class="col-md-8">
-          <div class="form-check"  >
-              <h3>You must save question before saving the answers!</h3>
-              <div class="col-md-5">
-                <a class="p-1" (click)="addCheck()" ><i class="far fa-plus-square fa-2x"></i></a>
-                <a class="p-1" (click)="removeCheck()"> <i class="far fa-minus-square fa-2x"></i></a>
-                <h3>Add/Remove Answer Option</h3>
-              </div>
-              <div *ngFor="let i of checkArray">
-              <input class="form-control answer" placeholder="Enter answer option" 
-              required name="answer" [(ngModel)]="response.responseText"/>
-            </div>
+     
+    <div *ngFor="let c of checkArray; let i = index">
+      <div class="row  mb-1" *ngIf="isShownCheckBox">
+        <div class="col-md-5">
+          <div class="form-group">
+            <input class="form-control" id="optionText{{i}}" [(ngModel)]="optionText[i]" placeholder="Text Response"
+              required name="answer" size="50" />
+          </div>
         </div>
-        
+        <div class="col-md-2">
+          <a class="p-1" (click)="addCheck()"><i class="far fa-plus-square fa-2x"></i></a>
+          <a class="p-1" (click)="removeCheck()"> <i class="far fa-minus-square fa-2x"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="isShownCommentBox">
+      <div class="col-md-5">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div>
     </div>
 
     <div class="row" *ngIf="surveySubmitted">
       <div class="col-md-4 mt-1">
-        <button class="btn btn-success" (click)="closeSurvey()">Save Survey & Close</button>
+        <button class="btn btn-success" routerLink="/surveys">Done</button>
       </div>
     </div>
 
