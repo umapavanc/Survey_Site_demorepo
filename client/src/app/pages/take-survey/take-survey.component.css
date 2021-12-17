@@ -4,6 +4,9 @@ Group no - 2
 Student Id's - 300566849, 301211038, 301153525, 301072907, 301159366
 Purpose - Stylesheet for survey-edit component
 */
+.container{
+    width:900px
+}
 .edit-form {
     margin-top: 20px !important;
     margin-left: 20px !important;
@@ -43,7 +46,7 @@ h1 {
 
 input{
     max-width: 50% !important;
-    min-width: 400px !important;
+    
 }
 
 .alert-primary{

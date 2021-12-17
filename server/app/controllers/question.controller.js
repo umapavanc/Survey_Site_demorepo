@@ -131,3 +131,19 @@ exports.update = (req, res) => {
           });
         });
 };
+
+exports.findByQuestionType = (req, res) => {
+  const type = req.params.questionType;
+
+    Question.find({'questionType': type})
+      .then(data => {
+        if (!data)
+          res.status(404).send({ message: "Question with type " + type + " not found."});
+        else res.send(data);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .send({ message: "Error retrieving Question with type=" + type });
+      });
+};

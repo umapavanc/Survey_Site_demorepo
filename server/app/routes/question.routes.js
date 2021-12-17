@@ -19,6 +19,9 @@ module.exports = app =>{
     //route to retrieve all questions from specifc survey
     router.get("/api/questions/takeSurvey/:surveyId", questions.find);
 
+    //route to retrieve all questions from specifc survey
+    router.get("/api/questions/type/:questionType", questions.findByQuestionType);
+
     //route to get question by id
     router.get("/api/questions/:id", questions.findOne);
 

@@ -71,7 +71,7 @@
               </div>
               <div *ngFor="let i of checkArray">
               <input class="form-control answer" placeholder="Enter answer option" 
-              required name="answer" [(ngModel)]="response.responseText"/>
+              required name="answer" [(ngModel)]="i.questionText"/>
             </div>
         </div>
         
