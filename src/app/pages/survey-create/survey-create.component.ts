@@ -42,6 +42,7 @@ export class SurveyCreateComponent implements OnInit {
   surveySubmitted = false;
   storedId: string;
   questionSubmitted = false;
+  questionCount = 0;
 
   questions?: Question[];
   currentQuestion?: Question;
@@ -119,7 +120,8 @@ export class SurveyCreateComponent implements OnInit {
         this.saveResponse(this.questionId);
       }
       //this.router.navigate(['/surveys']);
-      //this.arrayOfQuestions.push(data);
+      this.questionCount++;
+      this.arrayOfQuestions.push(data);
       this.question.questionText = '';
       this.question.questionType = 0;
       this.btnDisable = true;

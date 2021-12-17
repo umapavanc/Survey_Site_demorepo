@@ -19,7 +19,7 @@
     <div class="row" *ngIf="isShownQuestions">
       <span>
         <h4 style="float:left;">Question:</h4><span style="float:right;color:green">Number of questions added: {{
-          arrayOfQuestions.length }}</span>
+          questionCount }}</span>
       </span>
       <div class="col-md-5">
         <input class="form-control" [(ngModel)]="question.questionText" required placeholder="Enter your question"
